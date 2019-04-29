@@ -33,7 +33,7 @@ export class Dashboard {
       const ref = store
         .collection('documents')
         .where('owner', '==', this.user.uid)
-        .orderBy('created', 'desc');
+        .orderBy('created', 'asc');
 
       this.onDocsSnapshot = ref.onSnapshot((snapshots) => {
         this.docs = snapshots.docs;
@@ -49,22 +49,12 @@ export class Dashboard {
       <app-page>
         <stencil-route-title pageTitle="Dashboard" />
         <div>
-          {this.loading && (
+          {this.loading ? (
             <div class="u-centered u-super o-page-loading">
               <loading-status status="loading" />
             </div>
-          )}
-          {!this.loading && this.docs.length > 0 && <document-list docs={this.docs} />}
-          {!this.loading && this.docs.length == 0 && (
-            <div class="u-centered u-letter-box-super">
-              <h3 class="c-heading">You don't have any documents</h3>
-              <stencil-route-link url="/edit" anchorClass="c-button c-button--ghost-success">
-                <span class="c-button__icon-left" aria-hidden={true}>
-                  <i aria-hidden={true} class="fa-fw fas fa-star-of-life" />
-                </span>
-                Create New
-              </stencil-route-link>
-            </div>
+          ) : (
+            <document-list user={this.user} docs={this.docs} history={this.history} />
           )}
         </div>
       </app-page>

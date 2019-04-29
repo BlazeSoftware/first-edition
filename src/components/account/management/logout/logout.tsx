@@ -23,7 +23,6 @@ export class Logout {
         ) : (
           <div>
             <h2 class="c-heading">Logged out.</h2>
-            <p class="c-paragraph u-text--quiet">See you soon!</p>
             <p class="c-paragraph">
               <stencil-route-link url={'/'} anchorClass="c-link">
                 Go back to the home page

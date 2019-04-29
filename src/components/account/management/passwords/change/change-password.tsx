@@ -151,7 +151,7 @@ export class ChangePassword {
               </label>
             </blaze-card-body>
             <blaze-card-footer>
-              <button class="c-button c-button--block c-button--ghost-success" disabled={this.loading}>
+              <button class="c-button c-button--block c-button--ghost c-button--success" disabled={this.loading}>
                 <span class="c-button__icon-left" aria-hidden={true}>
                   <i aria-hidden={true} class="fa-fw fas fa-save" />
                 </span>

@@ -1,14 +1,13 @@
-@import 'node_modules/@blaze/css/src/scss/mixins/_settings';
 @import 'node_modules/@blaze/css/src/scss/mixins/_tools.mediaqueries';
 @import 'node_modules/@blaze/css/src/scss/mixins/_utilities.visibility';
 @import 'node_modules/@blaze/css/src/scss/blaze';
 
-@mixin clearfix {
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+:root {
+  --color-brand: #000;
+  --color-text: #000;
+  --color-link: var(--color-default);
+  --text-font-family-sans-serif: 'Open Sans', sans-serif;
+  --text-font-family-serif: 'Crimson Text', serif;
 }
 
 html,
@@ -19,24 +18,11 @@ body {
 
 body {
   overflow-x: hidden;
-  background-color: map-get($colors, white);
-  color: map-get($colors, brand);
-}
-
-// .o-editor::-moz-selection {
-//   background-color: #26ffb7;
-// }
-
-// .o-editor::selection {
-//   background-color: #26ffb7;
-// }
-
-.u-text {
-  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
 }
 
 .u-serif {
-  font-family: 'Crimson Text', serif;
+  font-family: var(--text-font-family-serif);
 }
 
 .c-heading {
@@ -49,62 +35,45 @@ body {
   }
 }
 
-.o-header {
-  padding: 1em 0;
-  box-shadow: 0 2px 1px -2px map-get($colors, quiet);
+.masthead {
+  box-shadow: 0 2px 1px -2px var(--color-brand);
   line-height: 1;
 
-  @include screen-and-up(medium) {
+  @include screen-and-up(small) {
     padding: 2em 0;
     line-height: 0;
   }
-}
 
-.c-logo {
-  display: inline;
-  margin: 0;
-  padding: 0 0.6em 0 0;
-  font-size: 1.4em;
-  font-family: 'Crimson Text', serif;
-  font-weight: normal;
-}
-
-.c-nav-strip {
-  font-size: 0.7em;
-  padding: 0.5em 0;
-
-  @include screen-and-up(medium) {
-    text-align: right;
-    padding: 0;
+  .logo {
+    display: inline;
+    margin: 0;
+    padding: 0 0.6em 0 0;
+    font-size: 1.4em;
+    font-family: var(--text-font-family-serif);
+    font-weight: normal;
   }
 
-  a {
-    display: inline-block;
-    margin: 1em 2em 0 0em;
-    color: map-get($colors, quiet);
-    text-decoration: none;
+  nav {
+    font-size: 0.7em;
+    padding: 0.5em 0;
 
-    @include screen-and-up(medium) {
-      margin: 0 0 0 2em;
+    @include screen-and-up(small) {
+      text-align: right;
+      padding: 0;
     }
 
-    &:active,
-    &:visited {
-      color: map-get($colors, quiet);
+    a {
+      display: inline-block;
+      margin: 1em 2em 0 0em;
       text-decoration: none;
-    }
 
-    &:hover {
-      color: #000000;
-      text-decoration: underline;
-    }
+      @include screen-and-up(small) {
+        margin: 0 0 0 2em;
+      }
 
-    &.link-active {
-      color: #000000;
+      &.link-active {
+        text-decoration: underline;
+      }
     }
   }
-}
-
-.o-info-item {
-  line-height: 2;
 }

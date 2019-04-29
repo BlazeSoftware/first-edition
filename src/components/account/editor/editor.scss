@@ -1,0 +1,45 @@
+@import 'node_modules/@blaze/css/src/scss/mixins/_tools.mediaqueries';
+
+.status {
+  font-size: var(--text-font-size-xsmall);
+  color: var(--color-quiet);
+}
+
+.title {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--color-dark);
+  font-family: var(--text-font-family-serif);
+  font-size: var(--text-font-size-super);
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--color-brand);
+  }
+}
+
+.status,
+.title {
+  padding: var(--spacing-tiny) 0;
+}
+
+.body {
+  display: block;
+  position: absolute;
+  left: 1em;
+  top: 160px;
+  bottom: 0;
+  width: calc(100% - 2em);
+  margin: var(--spacing-medium) 0 0 0;
+  padding-bottom: 3em;
+  border: 0;
+  font-family: var(--text-font-family-serif);
+  font-size: var(--text-font-size-medium);
+  outline: none;
+  resize: none;
+
+  @include screen-and-up(medium) {
+    width: 46em;
+    left: calc(calc(100% - 46em) / 2);
+  }
+}

@@ -4,6 +4,7 @@ import firebase from '@/firebase/firebase';
 
 @Component({
   tag: 'account-management',
+  styleUrl: 'account.scss',
 })
 export class Account {
   changeNamePopup: any;
@@ -49,16 +50,16 @@ export class Account {
 
   renderInfoRow(label: string, value: string, popup?: any) {
     return (
-      <div class="o-grid o-grid--no-gutter o-grid--center o-grid--xsmall-full o-grid--small-full o-info-item">
-        <label class="o-grid__cell o-grid__cell--width-25 u-text--quiet">{label}:</label>
+      <div class="o-grid o-grid--no-gutter o-grid--center o-grid--xsmall-full o-grid--small-full u-letter-box-xsmall">
+        <label class="o-grid__cell o-grid__cell--width-25">{label}:</label>
         <span class="o-grid__cell">
           {!this.loading && (
             <span>
-              {value || <span class="u-text--normal u-text--highlight u-text--quiet">None set</span>}
+              {value || <span class="u-text--normal u-text--highlight">None set</span>}
               {popup && (
                 <a
                   role="button"
-                  class="c-edit-info c-link u-small u-display-inline-block u-pillar-box-medium"
+                  class="c-link u-small u-display-inline-block u-pillar-box-medium"
                   onClick={() => popup.show()}>
                   edit
                 </a>
@@ -93,11 +94,14 @@ export class Account {
             <h3 class="c-heading">Danger Zone</h3>
           </blaze-card-header>
           <blaze-card-body>
-            <button type="button" class="c-button c-button--ghost-error" onClick={() => this.deleteAccountPopup.show()}>
+            <button
+              type="button"
+              class="c-button c-button--ghost c-button--error"
+              onClick={() => this.deleteAccountPopup.show()}>
               Delete account
             </button>
             <div class="u-letter-box-small">
-              <label class="u-text--quiet">Once you delete an account, that's it, there is no recovery.</label>
+              <label>Once you delete an account, that's it, there is no recovery.</label>
             </div>
           </blaze-card-body>
         </blaze-card>
