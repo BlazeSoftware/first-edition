@@ -43,8 +43,8 @@ export class Editor {
   }, 30000));
 
   componentDidUnload() {
-    this.onDocSnapshot();
-    this.onBodySnapshot();
+    if (this.onDocSnapshot) this.onDocSnapshot();
+    if (this.onBodySnapshot) this.onBodySnapshot();
     this.firebaseUnsubscribe();
     clearInterval(this.statusChecker);
   }

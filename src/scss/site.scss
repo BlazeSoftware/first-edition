@@ -40,7 +40,7 @@ body {
   line-height: 1;
 
   @include screen-and-up(small) {
-    padding: 2em 0;
+    padding: 1em 0;
     line-height: 0;
   }
 

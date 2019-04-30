@@ -85,7 +85,7 @@ export class DeleteAccount {
                 </div>
               </blaze-alert>
               <span class="u-gradient-text u-gradient-text--error">Deleting your account is permanent.</span>
-              <p class="c-paragraph u-text--quiet u-small">
+              <p class="c-paragraph u-small">
                 If you delete your account all information we hold about you will be destroyed, all your documents will
                 be deleted and we will not be able to provide you with any support.
               </p>

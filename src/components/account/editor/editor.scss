@@ -26,8 +26,8 @@
 .body {
   display: block;
   position: absolute;
+  top: 145px;
   left: 1em;
-  top: 160px;
   bottom: 0;
   width: calc(100% - 2em);
   margin: var(--spacing-medium) 0 0 0;
@@ -38,8 +38,12 @@
   outline: none;
   resize: none;
 
+  @include screen-and-up(small) {
+    top: 125px;
+  }
+
   @include screen-and-up(medium) {
-    width: 46em;
     left: calc(calc(100% - 46em) / 2);
+    width: 46em;
   }
 }

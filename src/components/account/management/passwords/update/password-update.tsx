@@ -73,7 +73,7 @@ export class UpdatePassword {
         <blaze-card>
           <form onSubmit={(e) => this.updatePassword(e)}>
             <blaze-card-header>
-              <h2 class="c-heading u-gradient-text">New password</h2>
+              <h2 class="c-heading">New password</h2>
             </blaze-card-header>
             <blaze-card-body>
               <blaze-alert ref={(alert) => (this.alert = alert)} type={this.alertMsg.type}>
@@ -116,7 +116,7 @@ export class UpdatePassword {
               </label>
             </blaze-card-body>
             <blaze-card-footer>
-              <button class="c-button c-button--block c-button--success" disabled={this.loading}>
+              <button class="c-button c-button--block" disabled={this.loading}>
                 <span class="c-button__icon-left" aria-hidden={true}>
                   <i aria-hidden={true} class="fa-fw fas fa-save" />
                 </span>

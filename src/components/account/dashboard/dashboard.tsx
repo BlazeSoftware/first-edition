@@ -21,7 +21,7 @@ export class Dashboard {
   firebaseUnsubscribe: any;
   onDocsSnapshot: any;
   componentDidUnload() {
-    this.onDocsSnapshot();
+    if (this.onDocsSnapshot) this.onDocsSnapshot();
     this.firebaseUnsubscribe();
   }
 
