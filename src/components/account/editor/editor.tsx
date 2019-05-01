@@ -133,7 +133,7 @@ export class Editor {
       <div>
         {this.loading && <loading-status status="loading" />}
         {!this.loading && this.doc && this.body && (
-          <section>
+          <div>
             <div class="status">{this.saveMessage}</div>
             <div class="c-editor">
               <input
@@ -151,7 +151,10 @@ export class Editor {
                 placeholder="Write something amazing..."
               />
             </div>
-          </section>
+            <div class="toolbar">
+              <span>https://www.first-edition.org/e/{this.docId}</span>
+            </div>
+          </div>
         )}
       </div>
     );

@@ -28,10 +28,9 @@
   position: absolute;
   top: 145px;
   left: 1em;
-  bottom: 0;
-  width: calc(100% - 2em);
+  bottom: 4em;
   margin: var(--spacing-medium) 0 0 0;
-  padding-bottom: 3em;
+  padding-bottom: 1em;
   border: 0;
   font-family: var(--text-font-family-serif);
   font-size: var(--text-font-size-medium);
@@ -41,8 +40,29 @@
   @include screen-and-up(small) {
     top: 125px;
   }
+}
 
-  @include screen-and-up(medium) {
+.toolbar {
+  position: absolute;
+  bottom: 0;
+  line-height: 3;
+  text-align: right;
+  color: var(--color-default);
+  box-shadow: 0 -2px 1px -2px var(--color-brand);
+
+  span {
+    font-size: var(--text-font-size-small);
+  }
+}
+
+.body,
+.toolbar {
+  width: calc(100% - 2em);
+}
+
+@include screen-and-up(medium) {
+  .body,
+  .toolbar {
     left: calc(calc(100% - 46em) / 2);
     width: 46em;
   }

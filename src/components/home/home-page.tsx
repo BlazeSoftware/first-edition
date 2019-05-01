@@ -9,7 +9,7 @@ export class HomePage {
       <div>
         <div class="u-centered u-xlarge">
           <h1 class="c-heading u-super u-serif">First Edition</h1>
-          <h2 class="c-heading u-window-box-none u-small u-serif">Proofreading Platform</h2>
+          <h2 class="c-heading u-window-box-none u-small u-serif">Markdown Sharing</h2>
           <div class="u-letter-box-xlarge">
             <i class="fa-fw fas fa-book-reader fa-5x" aria-hidden={true} />
           </div>

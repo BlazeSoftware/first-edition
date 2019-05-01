@@ -61,6 +61,7 @@ document-list {
     text-align: left;
     font-size: calc(var(--text-font-size-medium) * 0.4);
     font-family: var(--text-font-family-serif);
+    border-radius: var(--border-radius);
     background: white;
   }
 
