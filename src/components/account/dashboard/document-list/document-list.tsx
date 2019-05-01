@@ -32,19 +32,15 @@ export class DocumentList {
         .collection('documents')
         .doc(snapshot.id)
         .delete();
-      await store
-        .collection('bodies')
-        .doc(snapshot.id)
-        .delete();
     }
   }
 
   render() {
     return (
       <div class="o-grid o-grid--wrap">
-        <div class="o-grid__cell o-grid__cell--width-100 o-grid__cell--width-50@xsmall o-grid__cell--width-33@small o-grid__cell--width-25@medium">
+        <div class="o-grid__cell o-grid__cell--width-100">
           <stencil-route-link onClick={() => this.createNew()} anchorClass="doc create">
-            <div class="title">Create New</div>
+            Create New
           </stencil-route-link>
         </div>
         {this.docs.map((snapshot) => {
@@ -55,7 +51,7 @@ export class DocumentList {
               <div class="doc">
                 <stencil-route-link url={`/edit/${snapshot.ref.id}`} key={snapshot.ref.id}>
                   <div class="title">{doc.title || 'Untitled'}</div>
-                  <div class="body">{doc.preview}</div>
+                  <div class="body">{doc.body && doc.body.substring(0, 500)}</div>
                 </stencil-route-link>
                 <button onClick={() => this.deleteDoc(snapshot)}>Remove</button>
               </div>

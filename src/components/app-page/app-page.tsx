@@ -8,8 +8,8 @@ export class AppPage {
     return (
       <main class="o-container o-container--medium u-window-box-medium">
         <header class="masthead">
-          <h1 class="logo">First Edition</h1>
-          <span class="u-xsmall u-text--quiet">v0.1</span>
+          <typd-logo />
+          <span class="u-xsmall u-text--quiet c-version">v0.1</span>
           <nav>
             <stencil-route-link anchorClass="c-link" url="/dashboard">
               Dashboard
@@ -22,7 +22,7 @@ export class AppPage {
             </stencil-route-link>
           </nav>
         </header>
-        <div class="u-letter-box-medium">
+        <div class="u-letter-box-small">
           <slot />
         </div>
       </main>

@@ -26,11 +26,11 @@
 .body {
   display: block;
   position: absolute;
-  top: 145px;
+  top: 11em;
   left: 1em;
-  bottom: 4em;
+  bottom: 3.5em;
   margin: var(--spacing-medium) 0 0 0;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
   border: 0;
   font-family: var(--text-font-family-serif);
   font-size: var(--text-font-size-medium);
@@ -38,7 +38,7 @@
   resize: none;
 
   @include screen-and-up(small) {
-    top: 125px;
+    top: 10em;
   }
 }
 

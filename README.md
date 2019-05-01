@@ -1,5 +1,5 @@
-# <a href="https://www.first-edition.org">First Edition</a>
+# <a href="https://typd.org">typd</a>
 
-Proofreading platform
+Words.
 
-[![ci build status](https://img.shields.io/travis/BlazeSoftware/first-edition.svg?style=for-the-badge&logo=travis)](https://travis-ci.org/BlazeSoftware/first-edition)
+[![ci build status](https://img.shields.io/travis/BlazeSoftware/typd.svg?style=for-the-badge&logo=travis)](https://travis-ci.org/BlazeSoftware/typd)

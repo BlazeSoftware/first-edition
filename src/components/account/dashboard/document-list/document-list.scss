@@ -17,7 +17,6 @@ document-list {
     border-radius: var(--border-radius);
     box-shadow: 0 7px 7px -7px var(--color-default);
     background-color: var(--color-background);
-    animation: scaleIn linear 0.2s;
     transform: scale(1);
     transition: color linear 0.2s, box-shadow linear 0.2s;
     cursor: pointer;
@@ -26,6 +25,10 @@ document-list {
     &:focus {
       box-shadow: 0 7px 7px -7px var(--color-brand);
     }
+  }
+
+  .doc:not(.create) {
+    animation: scaleIn linear 0.2s;
   }
 
   @keyframes scaleIn {
@@ -40,6 +43,7 @@ document-list {
 
   .create {
     color: var(--color-success);
+    font-family: var(--text-font-family-serif);
 
     &:hover,
     &:focus {
@@ -50,6 +54,9 @@ document-list {
   .title {
     padding: var(--spacing-small) 0;
     font-family: var(--text-font-family-serif);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .body {

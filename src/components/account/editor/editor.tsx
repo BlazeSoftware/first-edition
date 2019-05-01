@@ -33,18 +33,15 @@ export class Editor {
   body: any;
 
   docSnapshot: any;
-  bodySnapshot: any;
 
   firebaseUnsubscribe: any;
   onDocSnapshot: any;
-  onBodySnapshot: any;
   statusChecker: any = (this.statusChecker = setInterval(() => {
     this.updateStatus();
   }, 30000));
 
   componentDidUnload() {
     if (this.onDocSnapshot) this.onDocSnapshot();
-    if (this.onBodySnapshot) this.onBodySnapshot();
     this.firebaseUnsubscribe();
     clearInterval(this.statusChecker);
   }
@@ -56,7 +53,6 @@ export class Editor {
       if (!this.docId) return (this.loading = false);
 
       const docRef = await store.collection('documents').doc(this.docId);
-      const bodyRef = await store.collection('bodies').doc(this.docId);
 
       this.onDocSnapshot = docRef.onSnapshot((snapshot) => {
         if (snapshot.exists) {
@@ -67,23 +63,8 @@ export class Editor {
         this.loading = false;
       });
 
-      this.onBodySnapshot = bodyRef.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          this.bodySnapshot = snapshot;
-          if (!this.body) {
-            this.body = this.bodySnapshot.data();
-          }
-        }
-        this.loading = false;
-      });
-
       await docRef.get();
-      await bodyRef.get();
     });
-  }
-
-  componentDidLoad() {
-    console.log(this.textareaRef);
   }
 
   updateStatus() {
@@ -100,26 +81,17 @@ export class Editor {
   }
 
   handleBodyInput(e) {
-    this.body.text = e.target.value;
+    this.doc.body = e.target.value;
     this.saveMessage = 'Saving...';
     this.saveDoc();
   }
 
   saveDoc = _debounce(this._saveDoc, DEBOUNCE_TIMEOUT);
   private async _saveDoc() {
-    const preview = this.body.text && this.body.text.substring(0, 500);
     await this.docSnapshot.ref.set(
       {
-        title: this.doc.title,
-        preview: preview || '',
-        updated: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true }
-    );
-
-    await this.bodySnapshot.ref.set(
-      {
-        text: this.body.text,
+        title: this.doc.title || '',
+        body: this.doc.body || '',
         updated: firebase.firestore.FieldValue.serverTimestamp(),
       },
       { merge: true }
@@ -132,7 +104,7 @@ export class Editor {
     return (
       <div>
         {this.loading && <loading-status status="loading" />}
-        {!this.loading && this.doc && this.body && (
+        {!this.loading && this.doc && (
           <div>
             <div class="status">{this.saveMessage}</div>
             <div class="c-editor">
@@ -147,12 +119,12 @@ export class Editor {
                 ref={(textarea) => (this.textareaRef = textarea)}
                 class="body"
                 onInput={(e) => this.handleBodyInput(e)}
-                value={this.body.text}
+                value={this.doc.body}
                 placeholder="Write something amazing..."
               />
             </div>
             <div class="toolbar">
-              <span>https://www.first-edition.org/e/{this.docId}</span>
+              <span>https://typd.org/{this.docId}</span>
             </div>
           </div>
         )}

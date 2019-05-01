@@ -29,7 +29,9 @@ body {
   font-weight: normal;
 }
 
-.c-alert {
+.c-alert[role='alert'] {
+  margin: 0;
+
   .c-link {
     text-decoration: underline;
   }
@@ -40,17 +42,13 @@ body {
   line-height: 1;
 
   @include screen-and-up(small) {
-    padding: 1em 0;
+    padding: 0 0 1em 0;
     line-height: 0;
   }
 
-  .logo {
-    display: inline;
-    margin: 0;
-    padding: 0 0.6em 0 0;
-    font-size: 1.4em;
-    font-family: var(--text-font-family-serif);
-    font-weight: normal;
+  .c-version {
+    display: inline-block;
+    margin-left: 1em;
   }
 
   nav {
@@ -59,7 +57,8 @@ body {
 
     @include screen-and-up(small) {
       text-align: right;
-      padding: 0;
+      margin-top: -2em;
+      padding: 0 0 2em 0;
     }
 
     a {
