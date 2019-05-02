@@ -43,7 +43,7 @@ const messages = (email: string) => ({
   },
   'auth/verified': {
     type: 'success',
-    message: 'Account successfully verified! Please wait whilst we take you to your dashboard.',
+    message: 'Account successfully verified! Please wait whilst we take you to your documents.',
   },
   'auth/too-many-requests': {
     type: 'warning',

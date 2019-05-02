@@ -20,7 +20,7 @@ export class Complete {
   alertMsg: AlertMessage = {};
 
   emailVerified() {
-    this.history.push('/dashboard');
+    this.history.push('/documents');
   }
 
   firebaseUnsubscribe: any;

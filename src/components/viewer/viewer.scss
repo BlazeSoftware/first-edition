@@ -3,13 +3,9 @@
 .editor {
   position: absolute;
   width: calc(100% - 2em);
-  top: 7em;
+  top: 0;
   bottom: 0;
   left: 1em;
-
-  @include screen-and-up(small) {
-    top: 6em;
-  }
 
   @include screen-and-up(medium) {
     left: calc(calc(100% - 46em) / 2);
@@ -24,10 +20,16 @@
 
 .title {
   width: 100%;
+  padding: 0;
+  margin: 0;
   border: none;
   border-bottom: 2px solid var(--color-dark);
   font-family: var(--text-font-family-serif);
   font-size: var(--text-font-size-super);
+  font-weight: var(--text-font-weight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:focus {
     outline: none;
@@ -43,7 +45,7 @@
 .body {
   display: block;
   position: absolute;
-  top: 3.8em;
+  top: 4em;
   left: 0;
   bottom: 3.5em;
   width: 100%;
@@ -68,29 +70,6 @@
   box-shadow: 0 -2px 1px -2px var(--color-brand);
 
   .link {
-    font-size: var(--text-font-size-small);
-    color: inherit;
-    text-decoration: none;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .action {
-    border: 0;
-    color: var(--color-brand);
-    font-size: var(--text-font-size-small);
-    text-decoration: underline;
-    white-space: nowrap;
-    background: none;
-    cursor: pointer;
-
-    &.public {
-      color: var(--color-info);
-    }
+    font-size: var(--text-font-size-xsmall);
   }
 }

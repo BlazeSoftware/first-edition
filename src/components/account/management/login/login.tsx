@@ -43,7 +43,7 @@ export class Login {
 
   componentDidLoad() {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      if (user) return this.history.push('/dashboard');
+      if (user) return this.history.push('/documents');
     });
   }
 
@@ -53,7 +53,7 @@ export class Login {
     try {
       const { user } = await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
       if (user.emailVerified) {
-        const url = this.history.location.query.url || '/dashboard';
+        const url = this.history.location.query.url || '/documents';
         return this.history.push(url);
       }
       const oobCode = this.history.location.query.oobCode;

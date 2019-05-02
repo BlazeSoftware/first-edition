@@ -32,10 +32,10 @@ export class UpdatePassword {
   passwordChanged() {
     this.alertMsg = {
       type: 'success',
-      message: <span>Password successfully updated! Please wait whilst we take you to your dashboard.</span>,
+      message: <span>Password successfully updated! Please wait whilst we take you to your documents.</span>,
     };
     this.alert.show();
-    setTimeout(() => this.history.push('/dashboard'), 5000);
+    setTimeout(() => this.history.push('/documents'), 5000);
   }
 
   async updatePassword(e) {

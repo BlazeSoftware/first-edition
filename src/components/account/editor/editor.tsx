@@ -7,7 +7,7 @@ import _debounce from 'lodash.debounce';
 const DEBOUNCE_TIMEOUT = 1000;
 
 @Component({
-  tag: 'doc-editor',
+  tag: 'document-editor',
   styleUrl: 'editor.scss',
   shadow: true,
 })
@@ -30,7 +30,7 @@ export class Editor {
   doc: any;
 
   @State()
-  body: any;
+  noDoc: boolean = false;
 
   docSnapshot: any;
 
@@ -50,27 +50,38 @@ export class Editor {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) return this.history.push('/login');
 
-      if (!this.docId) return (this.loading = false);
+      if (!this.docId) return this.history.push('/documents');
 
       const docRef = await store.collection('documents').doc(this.docId);
-
-      this.onDocSnapshot = docRef.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
+      this.onDocSnapshot = docRef.onSnapshot(
+        (snapshot) => {
           this.docSnapshot = snapshot;
-          if (!this.doc) this.doc = this.docSnapshot.data();
+          if (!this.doc) {
+            this.doc = this.docSnapshot.data();
+            if (typeof this.doc.shared === 'undefined') {
+              this.doc.shared = false;
+            }
+          }
           this.updateStatus();
+
+          this.loading = false;
+        },
+        () => {
+          this.noDoc = true;
+          this.loading = false;
         }
-        this.loading = false;
-      });
+      );
 
       await docRef.get();
     });
   }
 
   updateStatus() {
-    const updated = this.docSnapshot.data().updated;
-    if (updated) {
-      return (this.saveMessage = `Saved ${moment(updated.toDate()).fromNow()}.`);
+    if (this.docSnapshot) {
+      const updated = this.docSnapshot.data().updated;
+      if (updated) {
+        return (this.saveMessage = `Saved ${moment(updated.toDate()).fromNow()}.`);
+      }
     }
   }
 
@@ -84,6 +95,17 @@ export class Editor {
     this.doc.body = e.target.value;
     this.saveMessage = 'Saving...';
     this.saveDoc();
+  }
+
+  async toggleShared() {
+    this.doc = { ...this.doc, shared: !this.doc.shared };
+    await this.docSnapshot.ref.set(
+      {
+        shared: this.doc.shared,
+        updated: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
   }
 
   saveDoc = _debounce(this._saveDoc, DEBOUNCE_TIMEOUT);
@@ -103,28 +125,32 @@ export class Editor {
   render() {
     return (
       <div>
+        {this.noDoc && <document-not-found />}
         {this.loading && <loading-status status="loading" />}
         {!this.loading && this.doc && (
-          <div>
+          <div class="editor">
             <div class="status">{this.saveMessage}</div>
-            <div class="c-editor">
-              <input
-                type="text"
-                value={this.doc.title}
-                class="title"
-                placeholder="Title..."
-                onInput={(e) => this.handleTitleInput(e)}
-              />
-              <textarea
-                ref={(textarea) => (this.textareaRef = textarea)}
-                class="body"
-                onInput={(e) => this.handleBodyInput(e)}
-                value={this.doc.body}
-                placeholder="Write something amazing..."
-              />
-            </div>
+            <input
+              type="text"
+              value={this.doc.title}
+              class="title"
+              placeholder="Title..."
+              onInput={(e) => this.handleTitleInput(e)}
+            />
+            <textarea
+              ref={(textarea) => (this.textareaRef = textarea)}
+              class="body"
+              onInput={(e) => this.handleBodyInput(e)}
+              value={this.doc.body}
+              placeholder="Write something amazing..."
+            />
             <div class="toolbar">
-              <span>https://typd.org/{this.docId}</span>
+              <a href={`https://typd.org/${this.docId}`} class="link" target="_blank">
+                https://typd.org/-/{this.docId}
+              </a>
+              <button class={`action toggle ${this.doc.shared && 'public'}`} onClick={() => this.toggleShared()}>
+                {this.doc.shared ? 'is public' : 'is private'}
+              </button>
             </div>
           </div>
         )}

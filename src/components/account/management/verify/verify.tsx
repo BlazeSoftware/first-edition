@@ -34,7 +34,7 @@ export class Verify {
       this.user = user;
 
       if (this.user.emailVerified) {
-        return this.history.push('/dashboard');
+        return this.history.push('/documents');
       }
 
       if (!this.user.emailVerified && this.history.location.query.send === 'true') {

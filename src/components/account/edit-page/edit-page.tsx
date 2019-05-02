@@ -28,7 +28,7 @@ export class EditPage {
     return (
       <app-page>
         <stencil-route-title pageTitle="Editor" />
-        <doc-editor doc-id={this.match.params.docId} />
+        <document-editor doc-id={this.match.params.docId} />
       </app-page>
     );
   }

@@ -18,7 +18,7 @@ export class AppRoot {
             <stencil-route url="/" component="home-page" exact={true} />
             <stencil-route url="/login" component="account-login" />
             <stencil-route url="/join" component="account-join" />
-            <stencil-route url="/dashboard" component="account-dashboard" />
+            <stencil-route url="/documents" component="account-documents" />
             <stencil-route url="/account" component="account-management" />
             <stencil-route url="/action" component="account-oob-action" />
             <stencil-route url="/verify" component="account-verify" />
@@ -30,6 +30,7 @@ export class AppRoot {
             <stencil-route url="/edit/:docId?" component="edit-page" />
             <stencil-route url="/500" component="app-broken" />
             <stencil-route url="/logout" component="account-logout" />
+            <stencil-route url="/-/:docId" component="document-viewer" />
             <stencil-route component="page-not-found" />
           </stencil-route-switch>
         </stencil-router>

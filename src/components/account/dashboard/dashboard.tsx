@@ -3,9 +3,9 @@ import { RouterHistory } from '@stencil/router';
 import firebase, { store } from '@/firebase/firebase';
 
 @Component({
-  tag: 'account-dashboard',
+  tag: 'account-documents',
 })
-export class Dashboard {
+export class Documents {
   @Prop()
   history: RouterHistory;
 
@@ -47,7 +47,7 @@ export class Dashboard {
   render() {
     return (
       <app-page>
-        <stencil-route-title pageTitle="Dashboard" />
+        <stencil-route-title pageTitle="Documents" />
         <div>
           {this.loading ? (
             <div class="u-centered u-super o-page-loading">
