@@ -145,7 +145,7 @@ export class Editor {
               placeholder="Write something amazing..."
             />
             <div class="toolbar">
-              <a href={`https://typd.org/${this.docId}`} class="link" target="_blank">
+              <a href={`https://typd.org/-/${this.docId}`} class="link" target="_blank">
                 https://typd.org/-/{this.docId}
               </a>
               <button class={`action toggle ${this.doc.shared && 'public'}`} onClick={() => this.toggleShared()}>
