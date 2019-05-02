@@ -8,7 +8,9 @@ export class AppPage {
     return (
       <main class="o-container o-container--medium u-window-box-medium">
         <header class="masthead">
-          <typd-logo />
+          <stencil-route-link url="/">
+            <typd-logo />
+          </stencil-route-link>
           <span class="u-xsmall u-text--quiet c-version">v0.1</span>
           <nav>
             <stencil-route-link anchorClass="c-link" url="/documents">

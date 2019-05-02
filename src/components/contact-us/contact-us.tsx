@@ -81,7 +81,7 @@ export class ContactUs {
 
   firebaseUnsubscribe: any;
   componentDidUnload() {
-    this.firebaseUnsubscribe();
+    if (this.firebaseUnsubscribe) this.firebaseUnsubscribe();
   }
 
   componentDidLoad() {

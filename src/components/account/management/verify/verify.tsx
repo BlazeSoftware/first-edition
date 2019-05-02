@@ -25,7 +25,7 @@ export class Verify {
 
   firebaseUnsubscribe: any;
   componentDidUnload() {
-    this.firebaseUnsubscribe();
+    if (this.firebaseUnsubscribe) this.firebaseUnsubscribe();
   }
 
   componentDidLoad() {

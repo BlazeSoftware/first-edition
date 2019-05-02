@@ -19,4 +19,52 @@ h1 {
     top: 0.5em;
     right: 0.4em;
   }
+
+  span {
+    opacity: 1;
+  }
+}
+
+h1.animated {
+  &:after {
+    opacity: 0;
+    animation-name: cursor;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-delay: 1.4s;
+
+    @keyframes cursor {
+      0% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  }
+
+  @for $i from 1 to 6 {
+    span:nth-child(#{$i}) {
+      opacity: 0;
+      animation-name: typing;
+      animation-fill-mode: forwards;
+      animation-delay: 0.2s * $i;
+      animation-duration: 0.2s;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 }

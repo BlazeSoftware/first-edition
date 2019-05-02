@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'typd-logo',
@@ -6,7 +6,19 @@ import { Component } from '@stencil/core';
   shadow: true,
 })
 export class Logo {
+  @Prop()
+  animated: boolean;
+
   render() {
-    return <h1>typd.</h1>;
+    const animatedClass = this.animated ? 'animated' : '';
+    return (
+      <h1 class={animatedClass}>
+        <span>t</span>
+        <span>y</span>
+        <span>p</span>
+        <span>d</span>
+        <span>.</span>
+      </h1>
+    );
   }
 }

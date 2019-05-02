@@ -22,7 +22,7 @@ export class Documents {
   onDocsSnapshot: any;
   componentDidUnload() {
     if (this.onDocsSnapshot) this.onDocsSnapshot();
-    this.firebaseUnsubscribe();
+    if (this.firebaseUnsubscribe) this.firebaseUnsubscribe();
   }
 
   componentDidLoad() {

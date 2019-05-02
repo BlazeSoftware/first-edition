@@ -15,7 +15,7 @@ export class EditPage {
 
   firebaseUnsubscribe: any;
   componentDidUnload() {
-    this.firebaseUnsubscribe();
+    if (this.firebaseUnsubscribe) this.firebaseUnsubscribe();
   }
 
   componentWillLoad() {

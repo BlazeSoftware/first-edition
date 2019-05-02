@@ -42,7 +42,7 @@ export class Editor {
 
   componentDidUnload() {
     if (this.onDocSnapshot) this.onDocSnapshot();
-    this.firebaseUnsubscribe();
+    if (this.firebaseUnsubscribe) this.firebaseUnsubscribe();
     clearInterval(this.statusChecker);
   }
 
@@ -125,6 +125,7 @@ export class Editor {
   render() {
     return (
       <div>
+        <stencil-route-title pageTitle="Editor" />
         {this.noDoc && <document-not-found />}
         {this.loading && <loading-status status="loading" />}
         {!this.loading && this.doc && (

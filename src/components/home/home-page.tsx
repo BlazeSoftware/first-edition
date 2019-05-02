@@ -7,22 +7,18 @@ export class HomePage {
   render() {
     return (
       <div>
-        <div class="u-centered u-xlarge">
-          <h1 class="c-heading u-super u-serif">typd</h1>
-          <h2 class="c-heading u-window-box-none u-small u-serif">Words.</h2>
-          <div class="u-letter-box-xlarge">
-            <i class="fa-fw fas fa-book-reader fa-5x" aria-hidden={true} />
-          </div>
+        <div class="u-centered u-super u-letter-box-super">
+          <typd-logo animated />
         </div>
-        <div class="u-centered">
+        <div class="u-centered u-small">
           <stencil-route-link anchorClass="c-link" url="/join">
             Create an account
           </stencil-route-link>
-        </div>
-        <div class="u-centered u-letter-box-large">
+          <div class="u-display-inline-block u-pillar-box-medium">or</div>
           <stencil-route-link anchorClass="c-link" url="/login">
-            Login
+            login
           </stencil-route-link>
+          <div class="u-letter-box-large" />
         </div>
       </div>
     );

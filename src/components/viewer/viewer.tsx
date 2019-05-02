@@ -71,6 +71,7 @@ export class Viewer {
   render() {
     return (
       <div>
+        <stencil-route-title pageTitle={this.doc.title} />
         {this.noDoc && <document-not-found />}
         {this.loading && <loading-status status="loading" />}
         {!this.loading && this.doc && (
