@@ -18,6 +18,7 @@ export class Logo {
         <span>p</span>
         <span>d</span>
         <span>.</span>
+        <div class="cursor" />
       </h1>
     );
   }

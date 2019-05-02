@@ -9,9 +9,9 @@ h1 {
   border: 2px solid var(--color-brand);
   color: var(--color-brand);
   line-height: 1.55;
+  overflow: hidden;
 
-  &:after {
-    content: '';
+  .cursor {
     position: absolute;
     height: 0.8em;
     width: 0.4em;
@@ -26,7 +26,7 @@ h1 {
 }
 
 h1.animated {
-  &:after {
+  .cursor {
     opacity: 0;
     animation-name: cursor;
     animation-direction: alternate;
@@ -42,7 +42,7 @@ h1.animated {
       85% {
         opacity: 1;
       }
-      to {
+      100% {
         opacity: 0;
       }
     }
