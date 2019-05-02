@@ -56,6 +56,7 @@
   font-size: var(--text-font-size-medium);
   outline: none;
   resize: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .toolbar {
