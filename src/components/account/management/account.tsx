@@ -51,7 +51,7 @@ export class Account {
   renderInfoRow(label: string, value: string, popup?: any) {
     return (
       <div class="o-grid o-grid--no-gutter o-grid--center o-grid--xsmall-full o-grid--small-full u-letter-box-xsmall">
-        <label class="o-grid__cell o-grid__cell--width-25">{label}:</label>
+        <label class="account-info o-grid__cell o-grid__cell--width-25">{label}:</label>
         <span class="o-grid__cell">
           {!this.loading && (
             <span>

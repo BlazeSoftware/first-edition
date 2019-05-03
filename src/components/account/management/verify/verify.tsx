@@ -64,7 +64,9 @@ export class Verify {
             <p class="u-paragraph">
               We've sent an email to {email ? <span class="u-text--loud">{email}</span> : <span>your inbox</span>}.
             </p>
-            <p class="u-paragraph">Click on the link in the email and we'll get your account updated.</p>
+            <p class="u-paragraph">
+              <span class="u-text--loud">Click on the link</span> in the email to get started.
+            </p>
             <p class="u-paragraph u-small">
               If you don't receive an email make sure you've checked your junk folder and hit the button below. Get in
               touch if you're having problems.

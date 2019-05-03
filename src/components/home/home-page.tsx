@@ -2,23 +2,38 @@ import { Component } from '@stencil/core';
 
 @Component({
   tag: 'home-page',
+  styleUrl: 'home-page.scss',
+  shadow: true,
 })
 export class HomePage {
   render() {
     return (
       <div>
-        <div class="u-centered u-super u-letter-box-super">
+        <div class="logo">
           <typd-logo animated />
         </div>
-        <div class="u-centered u-small">
-          <stencil-route-link anchorClass="c-link" url="/join">
-            Create an account
-          </stencil-route-link>
-          <div class="u-display-inline-block u-pillar-box-medium">or</div>
-          <stencil-route-link anchorClass="c-link" url="/login">
-            login
-          </stencil-route-link>
-          <div class="u-letter-box-large" />
+        <div class="links">
+          <stencil-route-link url="/join">Create an account</stencil-route-link>
+          or
+          <stencil-route-link url="/login">login</stencil-route-link>
+        </div>
+        <div class="features">
+          <p>
+            <i class="tick" aria-hidden={true} />
+            Live updates keep your audience engaged.
+          </p>
+          <p>
+            <i class="tick" aria-hidden={true} />
+            Consistant formatting and readability.
+          </p>
+          <p>
+            <i class="tick" aria-hidden={true} />
+            Share exactly what you want to say.
+          </p>
+          <p>
+            <i class="tick" aria-hidden={true} />
+            Control privacy with one click.
+          </p>
         </div>
       </div>
     );

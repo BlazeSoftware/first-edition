@@ -3,21 +3,21 @@ h1 {
   display: inline-block;
   margin: 0;
   padding: 0.1em 1.1em 0.2em 0.3em;
+  overflow: hidden;
+  color: var(--color-brand);
+  font-weight: 400;
   font-size: 1.4em;
   font-family: var(--text-font-family-serif);
-  font-weight: 400;
-  border: 2px solid var(--color-brand);
-  color: var(--color-brand);
   line-height: 1.55;
-  overflow: hidden;
+  border: 2px solid var(--color-brand);
 
   .cursor {
     position: absolute;
-    height: 0.8em;
-    width: 0.4em;
-    background-color: var(--color-brand);
     top: 0.5em;
     right: 0.4em;
+    width: 0.4em;
+    height: 0.8em;
+    background-color: var(--color-brand);
   }
 
   span {
@@ -29,21 +29,26 @@ h1.animated {
   .cursor {
     opacity: 0;
     animation-name: cursor;
-    animation-direction: alternate;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-duration: 0.8s;
+    animation-duration: 1.5s;
     animation-delay: 1.4s;
+    animation-iteration-count: 3;
+    animation-fill-mode: forwards;
 
     @keyframes cursor {
       0% {
         opacity: 1;
       }
-      85% {
+
+      60% {
         opacity: 1;
       }
-      100% {
+
+      90% {
         opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
       }
     }
   }
@@ -52,9 +57,9 @@ h1.animated {
     span:nth-child(#{$i}) {
       opacity: 0;
       animation-name: typing;
-      animation-fill-mode: forwards;
-      animation-delay: 0.2s * $i;
       animation-duration: 0.2s;
+      animation-delay: 0.2s * $i;
+      animation-fill-mode: forwards;
     }
   }
 

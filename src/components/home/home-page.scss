@@ -1,0 +1,73 @@
+@import 'node_modules/@blaze/css/src/scss/mixins/_tools.mediaqueries';
+
+.logo {
+  padding: var(--spacing-super) 0 var(--spacing-large) 0;
+  font-size: var(--text-font-size-super);
+  text-align: center;
+}
+
+.links {
+  font-size: var(--text-font-size-small);
+  text-align: center;
+
+  a {
+    display: inline-block;
+    margin: 0 1em;
+    color: var(--color-link);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.features {
+  width: 310px;
+  margin: calc(var(--spacing-super) * 2) auto 0 auto;
+  padding-left: 1.7em;
+  font-family: var(--text-font-family-serif);
+
+  @include screen-and-up(small) {
+    padding-left: 2em;
+  }
+
+  @include screen-and-up(large) {
+    padding-left: 3em;
+  }
+
+  p {
+    opacity: 0;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 4 {
+    p:nth-child(#{$i}) {
+      animation-delay: ($i * 0.4) + 1.6s;
+    }
+  }
+
+  @keyframes appear {
+    from {
+      transform: translateY(-0.5em);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .tick {
+    display: inline-block;
+    width: 0.3em;
+    height: 0.8em;
+    margin: 0 0.8em 0 0;
+    border-right: 2px solid var(--color-success);
+    border-bottom: 2px solid var(--color-success);
+    transform: rotate(40deg);
+  }
+}

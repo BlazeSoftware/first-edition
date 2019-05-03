@@ -135,6 +135,7 @@ export class Editor {
               type="text"
               value={this.doc.title}
               class="title"
+              aria-label="Title of the document"
               placeholder="Title..."
               onInput={(e) => this.handleTitleInput(e)}
             />
@@ -143,6 +144,7 @@ export class Editor {
               class="body"
               onInput={(e) => this.handleBodyInput(e)}
               value={this.doc.body}
+              aria-label="Document body"
               placeholder="Write something amazing..."
             />
             <div class="toolbar">

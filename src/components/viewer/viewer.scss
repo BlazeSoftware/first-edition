@@ -2,10 +2,10 @@
 
 .editor {
   position: absolute;
-  width: calc(100% - 2em);
   top: 0;
   bottom: 0;
   left: 1em;
+  width: calc(100% - 2em);
 
   @include screen-and-up(medium) {
     left: calc(calc(100% - 46em) / 2);
@@ -13,61 +13,54 @@
   }
 }
 
-.status {
-  font-size: var(--text-font-size-xsmall);
-  color: var(--color-quiet);
-}
-
 .title {
   width: 100%;
-  padding: 0;
   margin: 0;
+  padding: var(--spacing-tiny) 0;
+  overflow: hidden;
+  font-weight: var(--text-font-weight);
+  font-size: var(--text-font-size-super);
+  font-family: var(--text-font-family-serif);
+  white-space: nowrap;
+  text-overflow: ellipsis;
   border: none;
   border-bottom: 2px solid var(--color-dark);
-  font-family: var(--text-font-family-serif);
-  font-size: var(--text-font-size-super);
-  font-weight: var(--text-font-weight);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   &:focus {
-    outline: none;
     border-bottom-color: var(--color-brand);
+    outline: none;
   }
 }
 
-.status,
-.title {
-  padding: var(--spacing-tiny) 0;
-}
-
 .body {
-  display: block;
   position: absolute;
-  top: 4em;
-  left: 0;
+  top: 3em;
   bottom: 3.5em;
+  left: 0;
+  display: block;
   width: 100%;
   margin: var(--spacing-medium) 0 0 0;
   padding: 0.5em 0 2em 0;
-  border: 0;
-  font-family: var(--text-font-family-serif);
+  overflow: auto;
   font-size: var(--text-font-size-medium);
+  font-family: var(--text-font-family-serif);
+  white-space: pre-wrap;
+  border: 0;
   outline: none;
   resize: none;
   -webkit-overflow-scrolling: touch;
 }
 
 .toolbar {
-  display: flex;
-  justify-content: flex-end;
   position: absolute;
   bottom: 0;
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
-  line-height: 4;
-  text-align: right;
+  padding: 0.5em 0 0.3em 0;
   color: var(--color-link);
+  line-height: 3;
+  text-align: right;
   box-shadow: 0 -2px 1px -2px var(--color-brand);
 
   .link {

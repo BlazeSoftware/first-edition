@@ -76,12 +76,11 @@ export class Viewer {
         {this.loading && <loading-status status="loading" />}
         {!this.loading && this.doc && (
           <div class="editor">
-            <div class="status">{this.saveMessage}</div>
             <h2 class="title">{this.doc.title}</h2>
-            <textarea class="body" value={this.doc.body} readonly />
+            <div class="body">{this.doc.body}</div>
             <div class="toolbar">
               <a href="https://typd.org" class="link" target="_blank">
-                <typd-logo />
+                <typd-logo animated />
               </a>
             </div>
           </div>
