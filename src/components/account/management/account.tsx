@@ -75,36 +75,38 @@ export class Account {
     return (
       <app-page>
         <stencil-route-title pageTitle="Account" />
-        <blaze-card>
-          <blaze-card-header>
-            <h3 class="c-heading">Details</h3>
-          </blaze-card-header>
-          <blaze-card-body>
-            {this.renderInfoRow('Name', this.user.displayName, this.changeNamePopup)}
-            {this.renderInfoRow('Email', this.user.email, this.changeEmailPopup)}
-            {this.renderInfoRow('Verified', 'Yes')}
-            {this.renderInfoRow('Password', '**************', this.changePasswordPopup)}
-            {this.renderInfoRow('Joined', this.user.metadata && this.user.metadata.creationTime)}
-            {this.renderInfoRow('Last logged in', this.user.metadata && this.user.metadata.lastSignInTime)}
-          </blaze-card-body>
-        </blaze-card>
-        <div class="u-letter-box-small" />
-        <blaze-card>
-          <blaze-card-header>
-            <h3 class="c-heading">Danger Zone</h3>
-          </blaze-card-header>
-          <blaze-card-body>
-            <button
-              type="button"
-              class="c-button c-button--ghost c-button--error"
-              onClick={() => this.deleteAccountPopup.show()}>
-              Delete account
-            </button>
-            <div class="u-letter-box-small">
-              <label>Once you delete an account, that's it, there is no recovery.</label>
-            </div>
-          </blaze-card-body>
-        </blaze-card>
+        <div class="u-letter-box-medium">
+          <blaze-card>
+            <blaze-card-header>
+              <h3 class="c-heading">Details</h3>
+            </blaze-card-header>
+            <blaze-card-body>
+              {this.renderInfoRow('Name', this.user.displayName, this.changeNamePopup)}
+              {this.renderInfoRow('Email', this.user.email, this.changeEmailPopup)}
+              {this.renderInfoRow('Verified', 'Yes')}
+              {this.renderInfoRow('Password', '**************', this.changePasswordPopup)}
+              {this.renderInfoRow('Joined', this.user.metadata && this.user.metadata.creationTime)}
+              {this.renderInfoRow('Last logged in', this.user.metadata && this.user.metadata.lastSignInTime)}
+            </blaze-card-body>
+          </blaze-card>
+          <div class="u-letter-box-small" />
+          <blaze-card>
+            <blaze-card-header>
+              <h3 class="c-heading">Danger Zone</h3>
+            </blaze-card-header>
+            <blaze-card-body>
+              <button
+                type="button"
+                class="c-button c-button--ghost c-button--error"
+                onClick={() => this.deleteAccountPopup.show()}>
+                Delete account
+              </button>
+              <div class="u-letter-box-small">
+                <label>Once you delete an account, that's it, there is no recovery.</label>
+              </div>
+            </blaze-card-body>
+          </blaze-card>
+        </div>
 
         <account-change-name user={this.user} ref={(popup) => (this.changeNamePopup = popup)} />
         <account-change-email

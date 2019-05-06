@@ -19,7 +19,10 @@ export class AppPage {
             <stencil-route-link anchorClass="c-link" url="/account">
               Account
             </stencil-route-link>
-            <stencil-route-link anchorClass="c-link" url="/Logout">
+            <stencil-route-link anchorClass="c-link" url="/contact-help">
+              Contact
+            </stencil-route-link>
+            <stencil-route-link anchorClass="c-link" url="/logout">
               Logout
             </stencil-route-link>
           </nav>

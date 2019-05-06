@@ -3,7 +3,11 @@ import { AlertMessage } from './AlertMessage';
 const messages = (email: string) => ({
   default: {
     type: 'error',
-    message: "Oops, sorry about this but something went wrong. Please contact us and we'll do our best to help.",
+    message: 'Oops, sorry about this but something went wrong.',
+    action: {
+      url: '/contact-us',
+      text: "Please contact us and we'll do our best to help you.",
+    },
   },
   'auth/invalid-email': {
     type: 'error',
@@ -51,7 +55,11 @@ const messages = (email: string) => ({
   },
   'auth/user-disabled': {
     type: 'warning',
-    message: "Your account has been disabled. Please contact us and we'll do our best to help you.",
+    message: 'Your account has been disabled.',
+    action: {
+      url: '/contact-us',
+      text: "Please contact us and we'll do our best to help you.",
+    },
   },
   'auth/expired-action-code': {
     type: 'warning',
