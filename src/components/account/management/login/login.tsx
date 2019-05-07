@@ -1,6 +1,6 @@
 import { Component, State, Prop } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
-import firebase from '@/firebase/firebase';
+import firebase, { store } from '@/firebase/firebase';
 import { getAlertMessage } from '@/firebase/alert-messages';
 import { AlertMessage } from '@/firebase/AlertMessage';
 
@@ -14,7 +14,7 @@ export class Login {
   history: RouterHistory;
 
   @State()
-  loading: boolean;
+  loading: boolean = true;
 
   @State()
   alertMsg: AlertMessage = {};
@@ -43,7 +43,20 @@ export class Login {
 
   componentDidLoad() {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+      const result: any = await firebase.auth().getRedirectResult();
+      if (result.credential) {
+        await store
+          .collection('credentials')
+          .doc(user.uid)
+          .set({
+            token: result.credential.accessToken,
+            secret: result.credential.secret,
+          });
+      }
+
       if (user) return this.history.push('/documents');
+
+      this.loading = false;
     });
   }
 
@@ -139,6 +152,18 @@ export class Login {
                   <i aria-hidden={true} class="fa-fw fas fa-sign-in-alt" />
                 </span>
                 Log In
+              </button>
+              <div class="u-xsmall u-letter-box-large">
+                <blaze-divider>Or</blaze-divider>
+              </div>
+              <button
+                type="button"
+                class="c-button c-button--block c-button--twitter"
+                disabled={this.loading}
+                onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.TwitterAuthProvider())}>
+                <span class="c-button__icon-left" aria-hidden={true}>
+                  <i aria-hidden={true} class="fa-fw fab fa-twitter" />
+                </span>
               </button>
             </blaze-card-footer>
           </form>

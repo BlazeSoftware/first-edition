@@ -32,6 +32,8 @@ export class AppRoot {
             <stencil-route url="/500" component="app-broken" />
             <stencil-route url="/logout" component="account-logout" />
             <stencil-route url="/-/:docId" component="document-viewer" />
+            <stencil-route url="/privacy" component="privacy-policy" />
+            <stencil-route url="/terms" component="service-terms" />
             <stencil-route component="page-not-found" />
           </stencil-route-switch>
         </stencil-router>
