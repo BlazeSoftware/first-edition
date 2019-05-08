@@ -3,7 +3,7 @@ import { AlertMessage } from './AlertMessage';
 const messages = (email: string) => ({
   default: {
     type: 'error',
-    message: 'Oops, sorry about this but something went wrong.',
+    message: 'Oops, something went wrong.',
     action: {
       url: '/contact-us',
       text: "Please contact us and we'll do our best to help you.",
@@ -14,6 +14,14 @@ const messages = (email: string) => ({
     message: 'Please use a valid email address.',
   },
   'auth/email-already-in-use': {
+    type: 'info',
+    message: 'This email already has an account.',
+    action: {
+      url: `/reset-password?email=${email}`,
+      text: ' Would you like to reset your password?',
+    },
+  },
+  'auth/account-exists-with-different-credential': {
     type: 'info',
     message: 'This email already has an account.',
     action: {

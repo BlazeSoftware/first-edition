@@ -45,7 +45,7 @@ export class Account {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) return this.history.push('/login');
 
-      this.socialLogin = user.providerData[0].providerId === 'twitter.com';
+      this.socialLogin = ['twitter.com', 'facebook.com'].includes(user.providerData[0].providerId);
       this.user = user;
       this.displayName = user.displayName;
       this.email = user.email;

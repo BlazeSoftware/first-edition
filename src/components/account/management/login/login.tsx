@@ -43,20 +43,30 @@ export class Login {
 
   componentDidLoad() {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      const result: any = await firebase.auth().getRedirectResult();
-      if (result.credential) {
-        await store
-          .collection('credentials')
-          .doc(user.uid)
-          .set({
+      try {
+        const result: any = await firebase.auth().getRedirectResult();
+        console.log(user, result);
+        if (user && result.credential) {
+          const credentials: any = {
             token: result.credential.accessToken,
-            secret: result.credential.secret,
-          });
+          };
+
+          if (result.credential.secret) credentials.secret = result.credential.secret;
+
+          await store
+            .collection('credentials')
+            .doc(user.uid)
+            .set(credentials);
+        }
+
+        if (user) return this.history.push('/documents');
+      } catch (error) {
+        console.log(error);
+        this.alertMsg = getAlertMessage(error.code, this.email);
+        this.alert.show();
+      } finally {
+        this.loading = false;
       }
-
-      if (user) return this.history.push('/documents');
-
-      this.loading = false;
     });
   }
 
@@ -156,15 +166,26 @@ export class Login {
               <div class="u-xsmall u-letter-box-large">
                 <blaze-divider>Or</blaze-divider>
               </div>
-              <button
-                type="button"
-                class="c-button c-button--block c-button--twitter"
-                disabled={this.loading}
-                onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.TwitterAuthProvider())}>
-                <span class="c-button__icon-left" aria-hidden={true}>
-                  <i aria-hidden={true} class="fa-fw fab fa-twitter" />
-                </span>
-              </button>
+              <div class="c-input-group">
+                <button
+                  type="button"
+                  class="c-button c-button--block c-button--twitter"
+                  disabled={this.loading}
+                  onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.TwitterAuthProvider())}>
+                  <span class="c-button__icon-left" aria-hidden={true}>
+                    <i aria-hidden={true} class="fa-fw fab fa-twitter" />
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  class="c-button c-button--block c-button--facebook"
+                  disabled={this.loading}
+                  onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.FacebookAuthProvider())}>
+                  <span class="c-button__icon-left" aria-hidden={true}>
+                    <i aria-hidden={true} class="fa-fw fab fa-facebook" />
+                  </span>
+                </button>
+              </div>
             </blaze-card-footer>
           </form>
         </blaze-card>

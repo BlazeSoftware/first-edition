@@ -1,7 +1,8 @@
 import firebase, { store } from '@/firebase/firebase';
 
 export default async (user, password) => {
-  const socialLogin = ['twitter.com'].includes(user.providerData[0].providerId);
+  const providerId = user.providerData[0].providerId;
+  const socialLogin = ['twitter.com', 'facebook.com'].includes(providerId);
   let credentials;
 
   if (socialLogin) {
@@ -9,7 +10,14 @@ export default async (user, password) => {
       .collection('credentials')
       .doc(user.uid)
       .get();
-    credentials = firebase.auth.TwitterAuthProvider.credential(creds.data().token, creds.data().secret);
+
+    if (providerId === 'twitter.com') {
+      credentials = firebase.auth.TwitterAuthProvider.credential(creds.data().token, creds.data().secret);
+    }
+
+    if (providerId === 'facebook.com') {
+      credentials = firebase.auth.FacebookAuthProvider.credential(creds.data().token);
+    }
   } else {
     credentials = firebase.auth.EmailAuthProvider.credential(user.email, password);
   }
@@ -27,10 +35,12 @@ export default async (user, password) => {
   });
   await batch.commit();
 
-  await store
-    .collection('credentials')
-    .doc(user.uid)
-    .delete();
+  if (socialLogin) {
+    await store
+      .collection('credentials')
+      .doc(user.uid)
+      .delete();
+  }
 
   await user.delete();
   await firebase.auth().signOut();
