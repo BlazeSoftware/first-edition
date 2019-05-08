@@ -1,6 +1,8 @@
 import { Component, State } from '@stencil/core';
 import firebase from '@/firebase/firebase';
 
+declare const grecaptcha: any;
+
 @Component({
   tag: 'contact-us',
 })
@@ -42,27 +44,32 @@ export class ContactUs {
     this.message = e.target.value;
   }
 
-  async sendMessage(e) {
+  sendMessage(e) {
     e.preventDefault();
 
     this.alertSending.show();
     setTimeout(() => this.alertSending.close(), 4000);
 
     try {
-      const response = await fetch('/contact/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.email,
-          from: this.from,
-          message: this.message,
-        }),
-      });
+      grecaptcha.ready(async () => {
+        const token = await grecaptcha.execute('6LeLbKIUAAAAAGa23gbEGQsvy8J_mYW7FoGzeEi_', { action: 'contact' });
 
-      if (!response.ok) throw await response.text();
-      this.messageSent();
+        const response = await fetch('/contact/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            from: this.from,
+            message: this.message,
+            token,
+          }),
+        });
+
+        if (!response.ok) throw await response.text();
+        this.messageSent();
+      });
     } catch (error) {
       console.error(error);
       this.alertError.show();
@@ -82,8 +89,10 @@ export class ContactUs {
 
   componentDidLoad() {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      this.email = user.email;
-      this.from = user.displayName;
+      if (user) {
+        this.email = user.email;
+        this.from = user.displayName;
+      }
     });
   }
 
@@ -153,6 +162,17 @@ export class ContactUs {
                   </span>
                 </button>
               </div>
+              <small class="u-text--quiet u-small">
+                This site is protected by reCAPTCHA and the Google{' '}
+                <a class="c-link" href="https://policies.google.com/privacy">
+                  Privacy Policy
+                </a>{' '}
+                and{' '}
+                <a class="c-link" href="https://policies.google.com/terms">
+                  Terms of Service
+                </a>{' '}
+                apply.
+              </small>
             </form>
           </blaze-card-body>
         </blaze-card>
