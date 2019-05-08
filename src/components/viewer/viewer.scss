@@ -14,15 +14,11 @@
 }
 
 .title {
-  width: 100%;
-  margin: 0;
   padding: var(--spacing-tiny) 0;
   overflow: hidden;
   font-weight: var(--text-font-weight);
   font-size: var(--text-font-size-super);
   font-family: var(--text-font-family-serif);
-  white-space: nowrap;
-  text-overflow: ellipsis;
   border: none;
   border-bottom: 2px solid var(--color-dark);
 
@@ -33,30 +29,18 @@
 }
 
 .body {
-  position: absolute;
-  top: 3em;
-  bottom: 3.5em;
-  left: 0;
   display: block;
-  width: 100%;
   margin: var(--spacing-medium) 0 0 0;
   padding: 0.5em 0 2em 0;
   overflow: auto;
   font-size: var(--text-font-size-medium);
   font-family: var(--text-font-family-serif);
   white-space: pre-wrap;
-  border: 0;
-  outline: none;
-  resize: none;
-  -webkit-overflow-scrolling: touch;
 }
 
 .toolbar {
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
   padding: 0.5em 0 0.3em 0;
   color: var(--color-link);
   line-height: 3;
