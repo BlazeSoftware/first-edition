@@ -3,7 +3,7 @@ import { AlertMessage } from './AlertMessage';
 const messages = (email: string) => ({
   default: {
     type: 'error',
-    message: 'Oops, something went wrong.',
+    message: 'Something went wrong.',
     action: {
       url: '/contact-us',
       text: "Please contact us and we'll do our best to help you.",
