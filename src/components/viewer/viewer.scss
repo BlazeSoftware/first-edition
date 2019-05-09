@@ -14,6 +14,7 @@
 }
 
 .title {
+  margin: var(--spacing-small) 0 0 0;
   padding: var(--spacing-tiny) 0;
   overflow: hidden;
   font-weight: var(--text-font-weight);
@@ -28,16 +29,6 @@
   }
 }
 
-.body {
-  display: block;
-  margin: var(--spacing-medium) 0 0 0;
-  padding: 0.5em 0 2em 0;
-  overflow: auto;
-  font-size: var(--text-font-size-medium);
-  font-family: var(--text-font-family-serif);
-  white-space: pre-wrap;
-}
-
 .toolbar {
   display: flex;
   justify-content: flex-end;
@@ -49,5 +40,84 @@
 
   .link {
     font-size: var(--text-font-size-xsmall);
+  }
+}
+
+.body {
+  display: block;
+  margin: 0;
+  padding: 0 0 1em 0;
+  overflow: auto;
+  font-size: var(--text-font-size-medium);
+  font-family: var(--text-font-family-serif);
+
+  /* Markdown styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: var(--spacing-xsmall) 0 var(--spacing-tiny);
+    font-weight: var(--text-font-weight-normal);
+  }
+
+  p {
+    display: block;
+    margin: 0;
+    padding: var(--spacing-small) 0;
+  }
+
+  a {
+    color: var(--color-info);
+    text-decoration: none;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  ul,
+  ol {
+    display: block;
+    padding: 0 0 0 var(--spacing-medium);
+    list-style-position: outside;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-default);
+  }
+
+  code,
+  pre {
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-quiet);
+    border-radius: 2px;
+  }
+
+  pre {
+    padding: var(--spacing-small);
+
+    code {
+      background-color: transparent;
+      border: 0;
+    }
+  }
+
+  code {
+    display: inline-block;
+    padding: 0 var(--spacing-tiny);
+  }
+
+  blockquote {
+    display: block;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0 0 0 var(--spacing-small);
+    border-left: 5px solid var(--color-default);
   }
 }

@@ -3,6 +3,7 @@ import { RouterHistory, MatchResults } from '@stencil/router';
 import { store } from '@/firebase/firebase';
 import moment from 'moment';
 import _debounce from 'lodash.debounce';
+import commonmark from 'commonmark';
 
 @Component({
   tag: 'document-viewer',
@@ -48,7 +49,12 @@ export class Viewer {
         if (!snapshot) {
           this.noDoc = true;
         }
+
         this.doc = snapshot.data();
+        const reader = new commonmark.Parser();
+        const writer = new commonmark.HtmlRenderer({ safe: true });
+
+        this.doc.body = writer.render(reader.parse(this.doc.body));
         this.updateStatus();
 
         this.loading = false;
@@ -77,7 +83,7 @@ export class Viewer {
         {!this.loading && this.doc && (
           <div class="editor">
             <h2 class="title">{this.doc.title}</h2>
-            <div class="body">{this.doc.body}</div>
+            <div class="body" innerHTML={this.doc.body} />
             <div class="toolbar">
               <a href="https://typd.org" class="link" target="_blank">
                 <typd-logo animated />
