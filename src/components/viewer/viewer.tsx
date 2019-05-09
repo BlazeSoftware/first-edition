@@ -51,7 +51,7 @@ export class Viewer {
         }
 
         this.doc = snapshot.data();
-        const reader = new commonmark.Parser();
+        const reader = new commonmark.Parser({ smart: true });
         const writer = new commonmark.HtmlRenderer({ safe: true });
 
         this.doc.body = writer.render(reader.parse(this.doc.body));

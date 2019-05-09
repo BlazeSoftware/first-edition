@@ -12,6 +12,7 @@ export class HomePage {
         <div class="logo">
           <typd-logo animated />
         </div>
+        <div class="tagline">Write something. Share it.</div>
         <div class="links">
           <stencil-route-link url="/join">Create an account</stencil-route-link>
           or

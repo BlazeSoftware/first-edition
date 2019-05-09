@@ -1,12 +1,20 @@
 @import 'node_modules/@blaze/css/src/scss/mixins/_tools.mediaqueries';
 
 .logo {
-  padding: var(--spacing-super) 0 var(--spacing-large) 0;
+  padding: var(--spacing-super) 0 0 0;
   font-size: var(--text-font-size-super);
   text-align: center;
 }
 
+.tagline {
+  padding: var(--spacing-medium) 0;
+  font-size: var(--text-font-size-small);
+  text-align: center;
+  color: var(--color-brand);
+}
+
 .links {
+  padding: var(--spacing-super) 0 0 0;
   font-size: var(--text-font-size-small);
   text-align: center;
 
@@ -24,7 +32,7 @@
 
 .features {
   width: 310px;
-  margin: calc(var(--spacing-super) * 2) auto 0 auto;
+  margin: calc(var(--spacing-xlarge) * 2) auto 0 auto;
   padding-left: 1.7em;
   font-family: var(--text-font-family-serif);
 
