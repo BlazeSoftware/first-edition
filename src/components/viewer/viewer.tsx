@@ -1,9 +1,9 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Element } from '@stencil/core';
 import { RouterHistory, MatchResults } from '@stencil/router';
 import { store } from '@/firebase/firebase';
-import moment from 'moment';
 import _debounce from 'lodash.debounce';
 import commonmark from 'commonmark';
+import hljs from 'highlight.js';
 
 @Component({
   tag: 'document-viewer',
@@ -11,6 +11,9 @@ import commonmark from 'commonmark';
   shadow: true,
 })
 export class Viewer {
+  @Element()
+  el: HTMLElement;
+
   @Prop()
   history: RouterHistory;
 
@@ -21,24 +24,16 @@ export class Viewer {
   loading: boolean = true;
 
   @State()
-  saveMessage: string = '';
-
-  @State()
   doc: any;
 
   @State()
   noDoc: boolean = false;
 
   docSnapshot: any;
-
   onDocSnapshot: any;
-  statusChecker: any = (this.statusChecker = setInterval(() => {
-    this.updateStatus();
-  }, 30000));
 
   componentDidUnload() {
     if (this.onDocSnapshot) this.onDocSnapshot();
-    clearInterval(this.statusChecker);
   }
 
   async componentWillLoad() {
@@ -51,13 +46,13 @@ export class Viewer {
         }
 
         this.doc = snapshot.data();
-        const reader = new commonmark.Parser({ smart: true });
-        const writer = new commonmark.HtmlRenderer({ safe: true });
+        if (this.doc) {
+          const reader = new commonmark.Parser({ smart: true });
+          const writer = new commonmark.HtmlRenderer();
 
-        this.doc.body = writer.render(reader.parse(this.doc.body));
-        this.updateStatus();
-
-        this.loading = false;
+          this.doc.body = writer.render(reader.parse(this.doc.body));
+          this.loading = false;
+        }
       },
       () => {
         this.noDoc = true;
@@ -68,12 +63,21 @@ export class Viewer {
     await docRef.get();
   }
 
-  updateStatus() {
-    const updated = this.doc.updated;
-    if (updated) {
-      return (this.saveMessage = `Saved ${moment(updated.toDate()).fromNow()}.`);
-    }
+  componentDidLoad() {
+    this.highlightCode();
   }
+
+  componentDidUpdate() {
+    this.highlightCode();
+  }
+
+  highlightCode() {
+    this.el.shadowRoot.querySelectorAll('code').forEach((block) => {
+      console.log(block);
+      hljs.highlightBlock(block);
+    });
+  }
+
   render() {
     return (
       <div>

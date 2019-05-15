@@ -14,16 +14,16 @@
     text-align: center;
     text-decoration: none;
     list-style: none;
-    background-color: var(--color-background);
+    background-color: var(--color-dark);
     border-radius: var(--border-radius);
-    box-shadow: 0 7px 7px -7px var(--color-default);
+    border-bottom: 2px solid var(--color-dark);
     transform: scale(1);
     cursor: pointer;
-    transition: color linear 0.2s, box-shadow linear 0.2s;
+    transition: color linear 0.2s, border-color linear 0.2s;
 
     &:hover,
     &:focus {
-      box-shadow: 0 7px 7px -7px var(--color-brand);
+      border-color: var(--color-default);
     }
   }
 
@@ -47,7 +47,7 @@
 
     &:hover,
     &:focus {
-      box-shadow: 0 7px 7px -7px var(--color-success);
+      border-color: var(--color-success);
     }
   }
 
