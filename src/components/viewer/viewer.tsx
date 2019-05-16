@@ -36,7 +36,7 @@ export class Viewer {
     if (this.onDocSnapshot) this.onDocSnapshot();
   }
 
-  async componentWillLoad() {
+  async componentDidLoad() {
     const docRef = await store.collection('documents').doc(this.match.params.docId);
 
     this.onDocSnapshot = docRef.onSnapshot(
@@ -65,9 +65,7 @@ export class Viewer {
     if (snapshot.exists) {
       fetch(`/analytics/read/${this.match.params.docId}`);
     }
-  }
 
-  componentDidLoad() {
     this.highlightCode();
   }
 
@@ -77,29 +75,31 @@ export class Viewer {
 
   highlightCode() {
     this.el.shadowRoot.querySelectorAll('code').forEach((block) => {
-      console.log(block);
       hljs.highlightBlock(block);
     });
   }
 
-  render() {
-    return (
-      <div>
-        <stencil-route-title pageTitle={this.doc.title} />
-        {this.noDoc && <document-not-found />}
-        {this.loading && <loading-status status="loading" />}
-        {!this.loading && this.doc && (
-          <div class="editor">
-            <h2 class="title">{this.doc.title}</h2>
-            <div class="body" innerHTML={this.doc.body} />
-            <div class="toolbar">
-              <a href="https://typd.org" class="link" target="_blank">
-                <typd-logo animated />
-              </a>
-            </div>
+  content() {
+    if (this.noDoc) return <document-not-found />;
+    if (this.loading) return <loading-status status="loading" />;
+    if (this.doc) {
+      return (
+        <div class="editor">
+          <stencil-route-title pageTitle={this.doc.title} />
+
+          <h2 class="title">{this.doc.title}</h2>
+          <div class="body" innerHTML={this.doc.body} />
+          <div class="toolbar">
+            <a href="https://typd.org" class="link" target="_blank">
+              <typd-logo animated />
+            </a>
           </div>
-        )}
-      </div>
-    );
+        </div>
+      );
+    }
+  }
+
+  render() {
+    return <div>{this.content()}</div>;
   }
 }

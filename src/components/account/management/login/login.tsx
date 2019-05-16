@@ -60,7 +60,7 @@ export class Login {
 
         if (user) return this.history.push('/documents');
       } catch (error) {
-        console.log(error);
+        console.error(error);
         this.alertMsg = getAlertMessage(error.code, this.email);
         this.alert.show();
       } finally {
@@ -85,7 +85,7 @@ export class Login {
       return this.history.push(`/verify?email=${user.email}`);
     } catch (error) {
       this.loading = false;
-      console.log(error);
+      console.error(error);
       this.alertMsg = getAlertMessage(error.code, this.email);
       this.alert.show();
     }

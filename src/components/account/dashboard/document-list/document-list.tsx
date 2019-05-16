@@ -1,7 +1,6 @@
 import { Component, Prop, Watch } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import services from '@/firebase/services';
-import { store } from '@/firebase/firebase';
 
 @Component({
   tag: 'document-list',
@@ -26,13 +25,8 @@ export class DocumentList {
     if (this.user) await services.addDocument(this.user);
   }
 
-  async deleteDoc(snapshot) {
-    if (confirm('Are you sure you want to delete this document?')) {
-      await store
-        .collection('documents')
-        .doc(snapshot.id)
-        .delete();
-    }
+  friendlyNumber(views) {
+    return views || 0;
   }
 
   render() {
@@ -56,7 +50,7 @@ export class DocumentList {
                   </div>
                   <div class="body">{doc.body && doc.body.substring(0, 500)}</div>
                 </stencil-route-link>
-                <button onClick={() => this.deleteDoc(snapshot)}>Remove</button>
+                <div class="views">{this.friendlyNumber(doc.views)} views</div>
               </div>
             </div>
           );

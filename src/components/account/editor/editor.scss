@@ -69,6 +69,7 @@
   box-shadow: 0 -2px 1px -2px var(--color-brand);
 
   .link {
+    flex: 1;
     overflow: hidden;
     color: inherit;
     font-size: var(--text-font-size-small);
@@ -82,6 +83,7 @@
   }
 
   .action {
+    flex: 0;
     color: var(--color-brand);
     font-size: var(--text-font-size-small);
     white-space: nowrap;

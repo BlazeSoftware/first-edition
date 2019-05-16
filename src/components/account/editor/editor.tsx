@@ -55,14 +55,18 @@ export class Editor {
       const docRef = await store.collection('documents').doc(this.docId);
       this.onDocSnapshot = docRef.onSnapshot(
         (snapshot) => {
-          this.docSnapshot = snapshot;
-          if (!this.doc) {
-            this.doc = this.docSnapshot.data();
-            if (typeof this.doc.shared === 'undefined') {
-              this.doc.shared = false;
+          if (!snapshot.exists) {
+            this.noDoc = true;
+          } else {
+            this.docSnapshot = snapshot;
+            if (!this.doc) {
+              this.doc = this.docSnapshot.data();
+              if (typeof this.doc.shared === 'undefined') {
+                this.doc.shared = false;
+              }
             }
+            this.updateStatus();
           }
-          this.updateStatus();
 
           this.loading = false;
         },
@@ -122,41 +126,60 @@ export class Editor {
     this.updateStatus();
   }
 
+  async deleteDoc() {
+    if (confirm('Are you sure you want to delete this document?')) {
+      await store
+        .collection('documents')
+        .doc(this.docId)
+        .delete();
+
+      this.history.push('/documents');
+    }
+  }
+
+  content() {
+    if (this.noDoc) return <document-not-found url="/documents" action-text="back to document list" />;
+    if (this.loading) return <loading-status status="loading" />;
+    if (this.doc)
+      return (
+        <div class="editor">
+          <div class="status">{this.saveMessage}</div>
+          <input
+            type="text"
+            value={this.doc.title}
+            class="title"
+            aria-label="Title of the document"
+            placeholder="Title..."
+            onInput={(e) => this.handleTitleInput(e)}
+          />
+          <textarea
+            ref={(textarea) => (this.textareaRef = textarea)}
+            class="body"
+            onInput={(e) => this.handleBodyInput(e)}
+            value={this.doc.body}
+            aria-label="Document body"
+            placeholder="Write something amazing..."
+          />
+          <div class="toolbar">
+            <button class="action" onClick={() => this.deleteDoc()}>
+              Delete
+            </button>
+            <a href={`https://typd.org/-/${this.docId}`} class="link" target="_blank">
+              https://typd.org/-/{this.docId}
+            </a>
+            <button class={`action toggle ${this.doc.shared && 'public'}`} onClick={() => this.toggleShared()}>
+              {this.doc.shared ? 'is public' : 'is private'}
+            </button>
+          </div>
+        </div>
+      );
+  }
+
   render() {
     return (
       <div>
         <stencil-route-title pageTitle="Editor" />
-        {this.noDoc && <document-not-found />}
-        {this.loading && <loading-status status="loading" />}
-        {!this.loading && this.doc && (
-          <div class="editor">
-            <div class="status">{this.saveMessage}</div>
-            <input
-              type="text"
-              value={this.doc.title}
-              class="title"
-              aria-label="Title of the document"
-              placeholder="Title..."
-              onInput={(e) => this.handleTitleInput(e)}
-            />
-            <textarea
-              ref={(textarea) => (this.textareaRef = textarea)}
-              class="body"
-              onInput={(e) => this.handleBodyInput(e)}
-              value={this.doc.body}
-              aria-label="Document body"
-              placeholder="Write something amazing..."
-            />
-            <div class="toolbar">
-              <a href={`https://typd.org/-/${this.docId}`} class="link" target="_blank">
-                https://typd.org/-/{this.docId}
-              </a>
-              <button class={`action toggle ${this.doc.shared && 'public'}`} onClick={() => this.toggleShared()}>
-                {this.doc.shared ? 'is public' : 'is private'}
-              </button>
-            </div>
-          </div>
-        )}
+        {this.content()}
       </div>
     );
   }

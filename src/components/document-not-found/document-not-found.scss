@@ -2,7 +2,15 @@
   position: absolute;
   top: 45%;
   width: 100%;
-  color: var(--color-error);
+  color: var(--color-brand);
   font-size: var(--text-font-size-small);
   text-align: center;
+}
+
+.msg {
+  padding: var(--spacing-medium) 0;
+}
+
+a {
+  color: var(--color-link);
 }

@@ -84,17 +84,9 @@
     white-space: pre-wrap;
   }
 
-  button {
-    display: block;
-    width: 100%;
+  .views {
     color: var(--color-default);
     font-size: var(--text-font-size-small);
     text-align: center;
-    background: none;
-    border: 0;
-
-    &:hover {
-      color: var(--color-error);
-    }
   }
 }
