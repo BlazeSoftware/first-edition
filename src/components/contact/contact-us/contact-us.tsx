@@ -3,9 +3,9 @@ import { RouterHistory } from '@stencil/router';
 import firebase from '@/firebase/firebase';
 
 @Component({
-  tag: 'contact-help',
+  tag: 'contact-us',
 })
-export class ContactHelp {
+export class ContactUs {
   @Prop()
   history: RouterHistory;
 
@@ -22,10 +22,10 @@ export class ContactHelp {
 
   render() {
     return (
-      <app-page>
+      <main class="o-container o-container--medium u-window-box-medium">
         <stencil-route-title pageTitle="Contact" />
-        <contact-us />
-      </app-page>
+        <contact-us-form />
+      </main>
     );
   }
 }

@@ -8,6 +8,10 @@
         "function": "contact"
       },
       {
+        "source": "/analytics/**",
+        "function": "analytics"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

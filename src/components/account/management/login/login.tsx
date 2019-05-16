@@ -45,7 +45,6 @@ export class Login {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       try {
         const result: any = await firebase.auth().getRedirectResult();
-        console.log(user, result);
         if (user && result.credential) {
           const credentials: any = {
             token: result.credential.accessToken,

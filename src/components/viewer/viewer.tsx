@@ -60,7 +60,11 @@ export class Viewer {
       }
     );
 
-    await docRef.get();
+    const snapshot = await docRef.get();
+
+    if (snapshot.exists) {
+      fetch(`/analytics/read/${this.match.params.docId}`);
+    }
   }
 
   componentDidLoad() {

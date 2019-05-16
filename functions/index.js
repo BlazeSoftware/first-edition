@@ -9,6 +9,8 @@ admin.initializeApp({
 const store = admin.firestore();
 store.settings({ timestampsInSnapshots: true });
 
+const analyticsApi = require('./analytics')(store);
 const contactApi = require('./contact')();
 
 exports.contact = functions.https.onRequest(contactApi);
+exports.analytics = functions.https.onRequest(analyticsApi);

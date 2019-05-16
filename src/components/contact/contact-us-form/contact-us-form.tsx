@@ -4,7 +4,7 @@ import firebase from '@/firebase/firebase';
 declare const grecaptcha: any;
 
 @Component({
-  tag: 'contact-us',
+  tag: 'contact-us-form',
 })
 export class ContactUs {
   @State()
@@ -98,8 +98,7 @@ export class ContactUs {
 
   render() {
     return (
-      <div class="o-container o-container--small u-window-box-medium">
-        <stencil-route-title pageTitle="Contact" />
+      <div class="u-letter-box-medium">
         <blaze-card>
           <blaze-card-header>
             <h2 class="c-heading">Contact Us</h2>

@@ -48,7 +48,7 @@ export class Documents {
     return (
       <app-page>
         <stencil-route-title pageTitle="Documents" />
-        <div>
+        <div class="u-letter-box-medium">
           {this.loading ? (
             <div class="u-centered u-super o-page-loading">
               <loading-status status="loading" />
