@@ -167,8 +167,26 @@ export class Editor {
             <a href={`https://typd.org/-/${this.docId}`} class="link" target="_blank">
               https://typd.org/-/{this.docId}
             </a>
-            <button class={`action toggle ${this.doc.shared && 'public'}`} onClick={() => this.toggleShared()}>
-              {this.doc.shared ? 'is public' : 'is private'}
+            {this.doc.shared && [
+              <div class="action">
+                <a
+                  class="share twitter"
+                  target="_blank"
+                  href={`https://twitter.com/intent/tweet?text=https://typd.org/-/${this.docId}`}>
+                  t
+                </a>
+              </div>,
+              <div class="action">
+                <a
+                  class="share facebook"
+                  target="_blank"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=https://typd.org/-/${this.docId}`}>
+                  f
+                </a>
+              </div>,
+            ]}
+            <button class="action toggle" onClick={() => this.toggleShared()}>
+              {this.doc.shared ? 'make private' : 'share'}
             </button>
           </div>
         </div>

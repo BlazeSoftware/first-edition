@@ -91,9 +91,21 @@
     background: none;
     border: 0;
     cursor: pointer;
+  }
 
-    &.public {
-      color: var(--color-success);
-    }
+  a.share {
+    margin: 0 0 0 var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-medium);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--border-radius-rounded);
+  }
+
+  a.twitter {
+    background-color: #00aced;
+  }
+
+  a.facebook {
+    background-color: #3b5998;
   }
 }
