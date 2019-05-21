@@ -21,6 +21,9 @@ export class Editor {
   docId: string;
 
   @State()
+  showActions: boolean = false;
+
+  @State()
   loading: boolean = true;
 
   @State()
@@ -61,7 +64,7 @@ export class Editor {
             this.docSnapshot = snapshot;
             if (!this.doc) {
               this.doc = this.docSnapshot.data();
-              if (typeof this.doc.shared === 'undefined') {
+              if (this.doc && typeof this.doc.shared === 'undefined') {
                 this.doc.shared = false;
               }
             }
@@ -102,6 +105,7 @@ export class Editor {
   }
 
   async toggleShared() {
+    this.saveMessage = 'Saving...';
     this.doc = { ...this.doc, shared: !this.doc.shared };
     await this.docSnapshot.ref.set(
       {
@@ -110,6 +114,7 @@ export class Editor {
       },
       { merge: true }
     );
+    this.updateStatus();
   }
 
   saveDoc = _debounce(this._saveDoc, DEBOUNCE_TIMEOUT);
@@ -160,35 +165,42 @@ export class Editor {
             aria-label="Document body"
             placeholder="Write something amazing..."
           />
-          <div class="toolbar">
-            <button class="action" onClick={() => this.deleteDoc()}>
-              Delete
-            </button>
-            <a href={`https://typd.org/-/${this.docId}`} class="link" target="_blank">
-              https://typd.org/-/{this.docId}
-            </a>
-            {this.doc.shared && [
-              <div class="action">
+          <button
+            class="actions"
+            onClick={() => {
+              this.showActions = !this.showActions;
+            }}>
+            {this.showActions ? 'Close' : 'Actions'}
+          </button>
+          {this.showActions && (
+            <div class="toolbar">
+              <button class="action toggle" onClick={() => this.toggleShared()}>
+                {this.doc.shared ? 'Set to private' : 'Share'}
+              </button>
+              {this.doc.shared && [
+                <a href={`https://typd.org/-/${this.docId}`} class="action link" target="_blank">
+                  https://typd.org/-/{this.docId}
+                </a>,
                 <a
-                  class="share twitter"
+                  class="action share twitter"
                   target="_blank"
                   href={`https://twitter.com/intent/tweet?text=https://typd.org/-/${this.docId}`}>
-                  t
-                </a>
-              </div>,
-              <div class="action">
+                  Twitter
+                </a>,
                 <a
-                  class="share facebook"
+                  class="action share facebook"
                   target="_blank"
                   href={`https://www.facebook.com/sharer/sharer.php?u=https://typd.org/-/${this.docId}`}>
-                  f
-                </a>
-              </div>,
-            ]}
-            <button class="action toggle" onClick={() => this.toggleShared()}>
-              {this.doc.shared ? 'make private' : 'share'}
-            </button>
-          </div>
+                  Facebook
+                </a>,
+              ]}
+              {!this.doc.shared && (
+                <button class="action delete" onClick={() => this.deleteDoc()}>
+                  Delete
+                </button>
+              )}
+            </div>
+          )}
         </div>
       );
   }

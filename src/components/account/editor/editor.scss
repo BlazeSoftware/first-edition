@@ -43,7 +43,7 @@
 .body {
   position: absolute;
   top: 3.8em;
-  bottom: 3.5em;
+  bottom: 2.5em;
   left: 0;
   display: block;
   width: 100%;
@@ -52,60 +52,84 @@
   font-size: var(--text-font-size-medium);
   font-family: var(--text-font-family-serif);
   border: 0;
+  box-shadow: 0 1px 1px -1px var(--color-brand);
   outline: none;
   resize: none;
   -webkit-overflow-scrolling: touch;
 }
 
-.toolbar {
+.actions {
   position: absolute;
   bottom: 0;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  right: 0;
+  margin: 0;
+  padding: 1em;
+  font-size: var(--text-font-size-small);
+  text-decoration: none;
+  color: var(--color-brand);
+  background: none;
+  border: 0;
+  outline: none;
+
+  &:focus,
+  &:active,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.toolbar {
+  position: absolute;
+  right: 0;
+  bottom: 2.5em;
+  padding: 1em 0.5em;
+  width: 260px;
+  background-color: #fff;
   color: var(--color-link);
-  line-height: 4;
-  text-align: right;
-  box-shadow: 0 -2px 1px -2px var(--color-brand);
+  text-align: left;
+  border-radius: 6px 0 0 0;
+  box-shadow: -3px -3px 6px -6px var(--color-brand);
 
-  .link {
-    flex: 1;
-    overflow: hidden;
-    color: inherit;
+  .action {
+    display: block;
+    width: 100%;
+    padding: 0.75em;
+    text-align: left;
     font-size: var(--text-font-size-small);
-    white-space: nowrap;
     text-decoration: none;
+    overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--color-brand);
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    outline: none;
 
+    &:focus,
+    &:active,
     &:hover {
       text-decoration: underline;
     }
   }
 
-  .action {
-    flex: 0;
-    color: var(--color-brand);
-    font-size: var(--text-font-size-small);
-    white-space: nowrap;
-    text-decoration: underline;
-    background: none;
-    border: 0;
-    cursor: pointer;
+  .link {
+    color: var(--color-link);
   }
 
-  a.share {
-    margin: 0 0 0 var(--spacing-small);
-    padding: var(--spacing-small) var(--spacing-medium);
-    color: #fff;
-    text-decoration: none;
-    border-radius: var(--border-radius-rounded);
+  .share {
+    display: inline-block;
+    width: auto;
   }
 
-  a.twitter {
-    background-color: #00aced;
+  .twitter {
+    color: #00aced;
   }
 
-  a.facebook {
-    background-color: #3b5998;
+  .facebook {
+    color: #3b5998;
+  }
+
+  .delete {
+    color: var(--color-error);
   }
 }
