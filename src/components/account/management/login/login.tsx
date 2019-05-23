@@ -1,6 +1,6 @@
 import { Component, State, Prop } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
-import firebase, { store } from '@/firebase/firebase';
+import firebase from '@/firebase/firebase';
 import { getAlertMessage } from '@/firebase/alert-messages';
 import { AlertMessage } from '@/firebase/AlertMessage';
 
@@ -14,7 +14,7 @@ export class Login {
   history: RouterHistory;
 
   @State()
-  loading: boolean = true;
+  loading: boolean = false;
 
   @State()
   alertMsg: AlertMessage = {};
@@ -42,31 +42,11 @@ export class Login {
   }
 
   componentDidLoad() {
-    this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      try {
-        const result: any = await firebase.auth().getRedirectResult();
-        if (user && result.credential) {
-          const credentials: any = {
-            token: result.credential.accessToken,
-          };
-
-          if (result.credential.secret) credentials.secret = result.credential.secret;
-
-          await store
-            .collection('credentials')
-            .doc(user.uid)
-            .set(credentials);
-        }
-
-        if (user) return this.history.push('/documents');
-      } catch (error) {
-        console.error(error);
-        this.alertMsg = getAlertMessage(error.code, this.email);
-        this.alert.show();
-      } finally {
-        this.loading = false;
-      }
-    });
+    const errorCode = this.history.location.query.e;
+    if (errorCode) {
+      this.alertMsg = getAlertMessage(errorCode);
+      this.alert.show();
+    }
   }
 
   async login(e) {
@@ -166,24 +146,12 @@ export class Login {
                 <blaze-divider>Or</blaze-divider>
               </div>
               <div class="c-input-group">
-                <button
-                  type="button"
-                  class="c-button c-button--block c-button--twitter"
-                  disabled={this.loading}
-                  onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.TwitterAuthProvider())}>
-                  <span class="c-button__icon-left" aria-hidden={true}>
-                    <i aria-hidden={true} class="fa-fw fab fa-twitter" />
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  class="c-button c-button--block c-button--facebook"
-                  disabled={this.loading}
-                  onClick={() => firebase.auth().signInWithRedirect(new firebase.auth.FacebookAuthProvider())}>
-                  <span class="c-button__icon-left" aria-hidden={true}>
-                    <i aria-hidden={true} class="fa-fw fab fa-facebook" />
-                  </span>
-                </button>
+                <stencil-route-link anchorClass="twitter" url="/social/twitter">
+                  Twitter
+                </stencil-route-link>
+                <stencil-route-link anchorClass="facebook" url="/social/facebook">
+                  Facebook
+                </stencil-route-link>
               </div>
             </blaze-card-footer>
           </form>
