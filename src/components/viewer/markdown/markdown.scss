@@ -1,0 +1,137 @@
+@import 'node_modules/highlight.js/styles/github';
+
+h1 {
+  font-size: var(--text-font-size-super);
+}
+
+h2 {
+  font-size: var(--text-font-size-xlarge);
+}
+
+h3 {
+  font-size: var(--text-font-size-large);
+}
+
+h4 {
+  font-size: var(--text-font-size-medium);
+}
+
+h5 {
+  font-size: var(--text-font-size-small);
+}
+
+h6 {
+  font-size: var(--text-font-size-xsmall);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: var(--spacing-small) 0 var(--spacing-tiny);
+  font-weight: var(--text-font-weight-normal);
+}
+
+p {
+  display: block;
+  margin: 0;
+  padding: var(--spacing-small) 0;
+}
+
+a {
+  color: var(--color-info);
+  text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+ul,
+ol {
+  display: block;
+  margin: 0;
+  padding: 0 0 0 var(--spacing-large);
+  list-style-position: outside;
+}
+
+li {
+  padding: 0 0 0 var(--spacing-xsmall);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-default);
+}
+
+code,
+pre code {
+  border-radius: 2px;
+}
+
+pre {
+  code {
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--spacing-medium);
+    border: 0;
+  }
+}
+
+code {
+  display: inline-block;
+  padding: 0 var(--spacing-small);
+  vertical-align: bottom;
+  border: 1px solid var(--color-dark);
+}
+
+blockquote {
+  display: block;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0 0 0 var(--spacing-small);
+  border-left: 5px solid var(--color-dark);
+}
+
+table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr {
+  border-bottom: 1px solid var(--color-dark);
+}
+
+th,
+td {
+  padding: var(--spacing-small);
+
+  &:first-child {
+    border-right: 1px solid var(--color-dark);
+    border-left: 1px solid var(--color-dark);
+  }
+
+  &:not(:first-child) {
+    border-right: 1px solid var(--color-dark);
+  }
+}
+
+th {
+  font-weight: var(--text-font-weight-heavy);
+  font-size: var(--text-font-size-medium);
+  background-color: var(--color-dark);
+}
+
+img {
+  max-width: 100%;
+}

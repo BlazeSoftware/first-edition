@@ -72,6 +72,20 @@ body {
   }
 }
 
+.twitter,
+.facebook {
+  padding: 0 2em;
+  font-size: 0.9em;
+  text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
 .twitter {
   color: #1da1f2;
 }

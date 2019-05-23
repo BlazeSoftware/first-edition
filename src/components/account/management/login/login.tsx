@@ -145,7 +145,7 @@ export class Login {
               <div class="u-xsmall u-letter-box-large">
                 <blaze-divider>Or</blaze-divider>
               </div>
-              <div class="c-input-group">
+              <div class="u-centered">
                 <stencil-route-link anchorClass="twitter" url="/social/twitter">
                   Twitter
                 </stencil-route-link>

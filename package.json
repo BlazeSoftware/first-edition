@@ -8,7 +8,7 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "stylelint": "stylelint \"src/**/*.scss\"",
+    "stylelint": "stylelint \"src/**/*.scss\" --fix",
     "prettier": "prettier --write **/*",
     "commit": "npm run prettier && git add . && commit"
   },

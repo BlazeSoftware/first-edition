@@ -24,6 +24,9 @@ export class Editor {
   showActions: boolean = false;
 
   @State()
+  showPreview: boolean = false;
+
+  @State()
   loading: boolean = true;
 
   @State()
@@ -157,14 +160,23 @@ export class Editor {
             placeholder="Title..."
             onInput={(e) => this.handleTitleInput(e)}
           />
-          <textarea
-            ref={(textarea) => (this.textareaRef = textarea)}
-            class="body"
-            onInput={(e) => this.handleBodyInput(e)}
-            value={this.doc.body}
-            aria-label="Document body"
-            placeholder="Write something amazing..."
-          />
+          {this.showPreview ? (
+            <div class="body">
+              <render-markdown content={this.doc.body} />
+            </div>
+          ) : (
+            <textarea
+              ref={(textarea) => (this.textareaRef = textarea)}
+              class="body"
+              onInput={(e) => this.handleBodyInput(e)}
+              value={this.doc.body}
+              aria-label="Document body"
+              placeholder="Write something amazing..."
+            />
+          )}
+          <button class="actions preview" onClick={() => (this.showPreview = !this.showPreview)}>
+            {this.showPreview ? 'Edit' : 'Preview'}
+          </button>
           <button
             class="actions"
             onClick={() => {

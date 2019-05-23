@@ -15,8 +15,8 @@
     text-decoration: none;
     list-style: none;
     background-color: var(--color-dark);
-    border-radius: var(--border-radius);
     border-bottom: 2px solid var(--color-dark);
+    border-radius: var(--border-radius);
     transform: scale(1);
     cursor: pointer;
     transition: color linear 0.2s, border-color linear 0.2s;
@@ -77,11 +77,11 @@
     overflow: hidden;
     font-size: calc(var(--text-font-size-medium) * 0.4);
     font-family: var(--text-font-family-serif);
+    white-space: pre-wrap;
     text-align: left;
     background: white;
     border-bottom: 1px solid var(--color-dark);
     border-radius: var(--border-radius);
-    white-space: pre-wrap;
   }
 
   .views {

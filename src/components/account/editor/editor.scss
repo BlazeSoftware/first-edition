@@ -28,6 +28,8 @@
   font-family: var(--text-font-family-serif);
   border: none;
   border-bottom: 2px solid var(--color-dark);
+  border-radius: 0;
+  appearance: none;
 
   &:focus {
     border-bottom-color: var(--color-brand);
@@ -49,24 +51,27 @@
   width: 100%;
   margin: var(--spacing-medium) 0 0 0;
   padding: 0.5em 0 2em 0;
+  overflow: auto;
   font-size: var(--text-font-size-medium);
   font-family: var(--text-font-family-serif);
   border: 0;
-  box-shadow: 0 1px 1px -1px var(--color-brand);
+  border-radius: 0;
   outline: none;
+  box-shadow: 0 1px 1px -1px var(--color-brand);
+  appearance: none;
   resize: none;
   -webkit-overflow-scrolling: touch;
 }
 
 .actions {
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   margin: 0;
   padding: 1em;
+  color: var(--color-brand);
   font-size: var(--text-font-size-small);
   text-decoration: none;
-  color: var(--color-brand);
   background: none;
   border: 0;
   outline: none;
@@ -78,31 +83,37 @@
   }
 }
 
+.preview {
+  right: auto;
+  left: 0;
+}
+
 .toolbar {
   position: absolute;
   right: 0;
   bottom: 2.5em;
-  padding: 1em 0.5em;
   width: 260px;
-  background-color: #fff;
+  padding: 1em 0.5em;
   color: var(--color-link);
   text-align: left;
+  background-color: #fff;
   border-radius: 6px 0 0 0;
   box-shadow: -3px -3px 6px -6px var(--color-brand);
 
   .action {
     display: block;
+    box-sizing: border-box;
     width: 100%;
     padding: 0.75em;
-    text-align: left;
-    font-size: var(--text-font-size-small);
-    text-decoration: none;
     overflow: hidden;
-    text-overflow: ellipsis;
     color: var(--color-brand);
+    font-size: var(--text-font-size-small);
+    white-space: nowrap;
+    text-align: left;
+    text-decoration: none;
+    text-overflow: ellipsis;
     background: none;
     border: 0;
-    box-sizing: border-box;
     outline: none;
 
     &:focus,
