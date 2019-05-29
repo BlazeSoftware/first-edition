@@ -17,9 +17,6 @@ export class DeleteAccount {
   @Prop()
   user: any = {};
 
-  @Prop()
-  socialLogin: boolean = false;
-
   @State()
   loading: boolean;
 
@@ -92,32 +89,30 @@ export class DeleteAccount {
                 If you delete your account all information we hold about you will be destroyed, all your documents will
                 be deleted and we will not be able to provide you with any support.
               </p>
-              {this.socialLogin === false && (
-                <label class="o-form-element c-label">
-                  Re-enter your password to confirm:
-                  <div class="c-input-group c-input-group--label">
-                    <div class="o-field o-field--icon-left">
-                      <i aria-hidden={true} class="fa-fw fas fa-lock c-icon" />
-                      <input
-                        type={this.passwordVisible ? 'text' : 'password'}
-                        value={this.password}
-                        class="c-field"
-                        required
-                        disabled={this.loading}
-                        minLength={6}
-                        onInput={(e) => this.handleCurrentPasswordChange(e)}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      class="c-button"
+              <label class="o-form-element c-label">
+                Re-enter your password to confirm:
+                <div class="c-input-group c-input-group--label">
+                  <div class="o-field o-field--icon-left">
+                    <i aria-hidden={true} class="fa-fw fas fa-lock c-icon" />
+                    <input
+                      type={this.passwordVisible ? 'text' : 'password'}
+                      value={this.password}
+                      class="c-field"
+                      required
                       disabled={this.loading}
-                      onClick={() => (this.passwordVisible = !this.passwordVisible)}>
-                      {this.passwordVisible ? 'Hide' : 'Show'}
-                    </button>
+                      minLength={6}
+                      onInput={(e) => this.handleCurrentPasswordChange(e)}
+                    />
                   </div>
-                </label>
-              )}
+                  <button
+                    type="button"
+                    class="c-button"
+                    disabled={this.loading}
+                    onClick={() => (this.passwordVisible = !this.passwordVisible)}>
+                    {this.passwordVisible ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+              </label>
             </blaze-card-body>
             <blaze-card-footer>
               <button

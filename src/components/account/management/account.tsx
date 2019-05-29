@@ -16,9 +16,6 @@ export class Account {
   history: RouterHistory;
 
   @State()
-  socialLogin: boolean = null;
-
-  @State()
   user: any = {};
 
   @State()
@@ -45,7 +42,6 @@ export class Account {
     this.firebaseUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) return this.history.push('/login');
 
-      this.socialLogin = ['twitter.com', 'facebook.com'].includes(user.providerData[0].providerId);
       this.user = user;
       this.displayName = user.displayName;
       this.email = user.email;
@@ -87,9 +83,9 @@ export class Account {
             </blaze-card-header>
             <blaze-card-body>
               {this.renderInfoRow('Name', this.user.displayName, this.changeNamePopup)}
-              {this.socialLogin === false && this.renderInfoRow('Email', this.user.email, this.changeEmailPopup)}
+              {this.renderInfoRow('Email', this.user.email, this.changeEmailPopup)}
               {this.renderInfoRow('Verified', 'Yes')}
-              {this.socialLogin === false && this.renderInfoRow('Password', '**************', this.changePasswordPopup)}
+              {this.renderInfoRow('Password', '**************', this.changePasswordPopup)}
               {this.renderInfoRow('Joined', this.user.metadata && this.user.metadata.creationTime)}
               {this.renderInfoRow('Last logged in', this.user.metadata && this.user.metadata.lastSignInTime)}
             </blaze-card-body>
@@ -120,12 +116,7 @@ export class Account {
           ref={(popup) => (this.changeEmailPopup = popup)}
         />
         <account-change-password user={this.user} ref={(popup) => (this.changePasswordPopup = popup)} />
-        <account-delete
-          user={this.user}
-          social-login={this.socialLogin}
-          history={this.history}
-          ref={(popup) => (this.deleteAccountPopup = popup)}
-        />
+        <account-delete user={this.user} history={this.history} ref={(popup) => (this.deleteAccountPopup = popup)} />
       </app-page>
     );
   }

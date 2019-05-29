@@ -17,7 +17,6 @@ export class AppRoot {
           <stencil-route-switch>
             <stencil-route url="/" component="home-page" exact={true} />
             <stencil-route url="/login" component="account-login" />
-            <stencil-route url="/social/:provider" component="account-login-social" />
             <stencil-route url="/join" component="account-join" />
             <stencil-route url="/documents" component="account-documents" />
             <stencil-route url="/account" component="account-management" />

@@ -142,17 +142,6 @@ export class Login {
                 </span>
                 Log In
               </button>
-              <div class="u-xsmall u-letter-box-large">
-                <blaze-divider>Or</blaze-divider>
-              </div>
-              <div class="u-centered">
-                <stencil-route-link anchorClass="twitter" url="/social/twitter">
-                  Twitter
-                </stencil-route-link>
-                <stencil-route-link anchorClass="facebook" url="/social/facebook">
-                  Facebook
-                </stencil-route-link>
-              </div>
             </blaze-card-footer>
           </form>
         </blaze-card>
