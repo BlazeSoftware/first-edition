@@ -45,9 +45,9 @@ module.exports = () => {
       replyTo: req.body.email,
       subject: 'Contact via Typd',
       html: `
-        <p><strong>From:</strong> ${req.body.from} <${req.body.email}></p>
-        <p><strong>Message:</strong></p>
-        <p>${req.body.message.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+        <p class="c-paragraph"><strong>From:</strong> ${req.body.from} <${req.body.email}></p>
+        <p class="c-paragraph"><strong>Message:</strong></p>
+        <p class="c-paragraph">${req.body.message.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       `,
     };
 

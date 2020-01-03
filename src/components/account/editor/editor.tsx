@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { h, Component, Prop, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import firebase, { store } from '@/firebase/firebase';
 import moment from 'moment';
@@ -42,9 +42,9 @@ export class Editor {
 
   firebaseUnsubscribe: any;
   onDocSnapshot: any;
-  statusChecker: any = (this.statusChecker = setInterval(() => {
+  statusChecker: any = setInterval(() => {
     this.updateStatus();
-  }, 30000));
+  }, 30000);
 
   componentDidUnload() {
     if (this.onDocSnapshot) this.onDocSnapshot();

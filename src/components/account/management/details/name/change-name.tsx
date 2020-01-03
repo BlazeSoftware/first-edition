@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, State, Prop, Method } from '@stencil/core';
+import { h, Component, Event, EventEmitter, State, Prop, Method } from '@stencil/core';
 import { getAlertMessage } from '@/firebase/alert-messages';
 import { AlertMessage } from '@/firebase/AlertMessage';
 

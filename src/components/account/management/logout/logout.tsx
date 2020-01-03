@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { h, Component, Prop } from '@stencil/core';
 import firebase from '@/firebase/firebase';
 import { RouterHistory } from '@stencil/router';
 

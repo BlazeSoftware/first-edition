@@ -1,4 +1,4 @@
-import { Component, Prop, State, Listen } from '@stencil/core';
+import { h, Component, Prop, State, Listen } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import firebase from '@/firebase/firebase';
 
@@ -76,7 +76,7 @@ export class Account {
     return (
       <app-page>
         <stencil-route-title pageTitle="Account" />
-        <div class="u-letter-box-medium">
+        <div class="u-letter-box-small">
           <blaze-card>
             <blaze-card-header>
               <h3 class="c-heading">Details</h3>

@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { h, Component, Prop, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import firebase, { store } from '@/firebase/firebase';
 
@@ -48,7 +48,7 @@ export class Documents {
     return (
       <app-page>
         <stencil-route-title pageTitle="Documents" />
-        <div class="u-letter-box-medium">
+        <div class="u-letter-box-small">
           {this.loading ? (
             <div class="u-centered u-super o-page-loading">
               <loading-status status="loading" />

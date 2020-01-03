@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { h, Component } from '@stencil/core';
 
 @Component({
   tag: 'service-terms',
@@ -10,8 +10,8 @@ export class Terms {
         <stencil-route-title pageTitle="Terms" />
         <h2 class="c-heading">Blaze Software Engineering Terms of Service</h2>
         <h3 class="c-heading">1. Terms</h3>
-        <p>
-          By accessing the website at <a href="https://typd.org">https://typd.org</a>, you are agreeing to be bound by
+        <p class="c-paragraph">
+          By accessing the website at <a class="c-link" href="https://typd.org">https://typd.org</a>, you are agreeing to be bound by
           these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance
           with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or
           accessing this site. The materials contained in this website are protected by applicable copyright and
@@ -57,7 +57,7 @@ export class Terms {
           </li>
         </ol>
         <h3 class="c-heading">4. Limitations</h3>
-        <p>
+        <p class="c-paragraph">
           In no event shall Blaze Software Engineering or its suppliers be liable for any damages (including, without
           limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or
           inability to use the materials on Blaze Software Engineering's website, even if Blaze Software Engineering or
@@ -66,7 +66,7 @@ export class Terms {
           limitations of liability for consequential or incidental damages, these limitations may not apply to you.
         </p>
         <h3 class="c-heading">5. Accuracy of materials</h3>
-        <p>
+        <p class="c-paragraph">
           The materials appearing on Blaze Software Engineering's website could include technical, typographical, or
           photographic errors. Blaze Software Engineering does not warrant that any of the materials on its website are
           accurate, complete or current. Blaze Software Engineering may make changes to the materials contained on its
@@ -74,18 +74,18 @@ export class Terms {
           the materials.
         </p>
         <h3 class="c-heading">6. Links</h3>
-        <p>
+        <p class="c-paragraph">
           Blaze Software Engineering has not reviewed all of the sites linked to its website and is not responsible for
           the contents of any such linked site. The inclusion of any link does not imply endorsement by Blaze Software
           Engineering of the site. Use of any such linked website is at the user's own risk.
         </p>
         <h3 class="c-heading">7. Modifications</h3>
-        <p>
+        <p class="c-paragraph">
           Blaze Software Engineering may revise these terms of service for its website at any time without notice. By
           using this website you are agreeing to be bound by the then current version of these terms of service.
         </p>
         <h3 class="c-heading">8. Governing Law</h3>
-        <p>
+        <p class="c-paragraph">
           These terms and conditions are governed by and construed in accordance with the laws of UK and you irrevocably
           submit to the exclusive jurisdiction of the courts in that State or location.
         </p>

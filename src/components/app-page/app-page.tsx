@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { h, Component } from '@stencil/core';
 
 @Component({
   tag: 'app-page',
@@ -7,11 +7,11 @@ export class AppPage {
   render() {
     return (
       <main class="o-container o-container--medium u-window-box-medium">
-        <header class="masthead">
+        <header class="c-masthead">
           <stencil-route-link url="/">
             <typd-logo />
           </stencil-route-link>
-          <nav>
+          <nav class="o-nav">
             <stencil-route-link anchorClass="c-link" url="/documents">
               Documents
             </stencil-route-link>

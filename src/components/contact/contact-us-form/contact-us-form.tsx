@@ -1,4 +1,4 @@
-import { Component, State } from '@stencil/core';
+import { h, Component, State } from '@stencil/core';
 import firebase from '@/firebase/firebase';
 
 declare const grecaptcha: any;
@@ -98,16 +98,14 @@ export class ContactUs {
 
   render() {
     return (
-      <div class="u-letter-box-medium">
+      <div class="u-letter-box-small">
         <blaze-card>
           <blaze-card-header>
             <h2 class="c-heading">Contact Us</h2>
           </blaze-card-header>
           <blaze-card-body>
-            <p class="c-paragraph u-small">
-              We're here to help. If you have any questions or just want to say hi then fill out the contact form below
-              to send us a message.
-            </p>
+            We're here to help. If you have any questions or just want to say hi then fill out the contact form below to
+            send us a message.
             <form onSubmit={(e) => this.sendMessage(e)}>
               <label class="c-label o-form-element">
                 Email address:

@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { h, Component, Prop, State, Element } from '@stencil/core';
 import { RouterHistory, MatchResults } from '@stencil/router';
 import { store } from '@/firebase/firebase';
 import _debounce from 'lodash.debounce';

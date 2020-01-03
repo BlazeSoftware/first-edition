@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { h, Component, Prop, State, Element } from '@stencil/core';
 import _debounce from 'lodash.debounce';
 import commonmark from 'commonmark';
 import hljs from 'highlight.js';

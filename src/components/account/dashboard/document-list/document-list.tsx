@@ -1,4 +1,4 @@
-import { Component, Prop, Watch } from '@stencil/core';
+import { h, Component, Prop, Watch } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import services from '@/firebase/services';
 
