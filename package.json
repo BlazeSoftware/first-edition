@@ -44,7 +44,7 @@
     "lodash.debounce": "4.0.8",
     "lodash.throttle": "4.1.1",
     "moment": "2.24.0",
-    "postcss": "7.0.25",
+    "postcss": "7.0.36",
     "prettier": "1.19.1",
     "puppeteer": "1.20.0",
     "rollup-plugin-alias": "2.2.0",
